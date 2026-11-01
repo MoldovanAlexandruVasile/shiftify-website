@@ -57,5 +57,14 @@ change to `promo.html`. The video is encoded with AVFoundation
 ## Privacy policy and Terms of use
 
 `privacy.html` and `terms.html` show the app's own legal texts (the Mac app
-version), copied from the shiftify repo into `src/legal/`. After changing them
+version), copied from the shiftify repo into `src/legal/` (English and Romanian). After changing them
 in the app, run `npm run sync:legal` here and commit.
+
+## Languages
+
+English and Romanian, with react-i18next. Site text lives in
+`src/i18n/locales/{en,ro}.json` (same keys in both). Visitors get their
+browser's language (Romanian for any `ro-*`, English otherwise) until they
+pick one from the RO / EN menu in the top bar; that choice is remembered.
+The legal pages use the app's own `en.ts` / `ro.ts` (see above), in the Mac
+or Windows version for the visitor's computer.

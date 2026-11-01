@@ -777,3 +777,105 @@ h1 {
   color: var(--primary);
   text-decoration: underline;
 }
+
+/* Language dropdown (top bar) */
+.lang {
+  position: relative;
+}
+
+.lang__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lang__button:hover {
+  border-color: var(--primary);
+}
+
+.lang__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 20;
+  min-width: 160px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.lang__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lang__item strong {
+  width: 24px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.lang__item:hover,
+.lang__item.is-active {
+  background: var(--primary-soft);
+  color: var(--on-primary-soft);
+}
+
+.lang__item.is-active strong {
+  color: var(--primary);
+}
+
+/* Install: Mac / Windows tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  width: fit-content;
+  margin: 32px auto 0;
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.tabs__tab {
+  padding: 8px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tabs__tab.is-active {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.tabs + .steps {
+  margin-top: 28px;
+}

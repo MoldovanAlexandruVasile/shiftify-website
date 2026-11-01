@@ -78,9 +78,9 @@
       screen: "day-off", pop: { crop: "day-off.kind", lift: 1.25, dy: -10 } },
     { name: "05-export", l1: "Send your timesheet", l2: "as Excel or PDF", sub: "A clean monthly timesheet for every client, ready to send.",
       screen: "export", pop: { crop: "export-preview.document", scale: 0.5, x: 780, y: 290 } },
-    { name: "06-dark-mode", dark: true, l1: "Easy on the eyes,", l2: "day or night", sub: "Light, dark, or follow your Mac.",
+    { name: "06-dark-mode", dark: true, l1: "Easy on the eyes,", l2: "day or night", sub: "Light, dark, or follow your device.",
       screen: "calendar-dark", pop: { crop: "calendar-dark.today", lift: 1.3, dx: 40, dy: -20 } },
-    { name: "07-private", l1: "Private", l2: "by design", sub: "Everything stays on your Mac.", private: true },
+    { name: "07-private", l1: "Private", l2: "by design", sub: "Everything stays on your device.", private: true },
   ];
 
   const ICONS = {
@@ -103,7 +103,7 @@
       stage.innerHTML = `<div class="card private">
         ${row("user", "No account", "Open it and start logging. No sign-up, no email.")}
         ${row("cloud", "No server", "Nothing is sent anywhere. No tracking, no ads.")}
-        ${row("laptop", "Stored on this Mac", "Your clients and days live in a local database.")}
+        ${row("laptop", "Stored on your device", "Your clients and days live in a local database.")}
         ${row("backup", "Daily backups", "Kept for 14 days, plus backups to any folder you pick.")}
       </div>`;
       return s.name;

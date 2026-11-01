@@ -1,14 +1,23 @@
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
+import { LanguagePicker } from "./components/LanguagePicker";
 import { SiteFooter } from "./components/SiteFooter";
+import { useVisitorBuild } from "./hooks/useVisitorBuild";
+import { currentLanguage } from "./i18n";
 import { LEGAL_CONTACT_EMAIL, LEGAL_PUBLISHER, LEGAL_UPDATED } from "./legal/constants/legal.constants";
 import { en } from "./legal/content/en";
+import { ro } from "./legal/content/ro";
 import type { LegalDocumentKind } from "./legal/types/legal.types";
 
-// The app's own legal texts (synced from the shiftify repo), in their Mac app
-// version: the website is where the Mac app is downloaded.
-const documents = en({ publisher: LEGAL_PUBLISHER, email: LEGAL_CONTACT_EMAIL, isDesktop: true });
+// The app's own legal texts (synced from the shiftify repo), in the visitor's
+// language and in their desktop app's version (Mac or Windows): the website
+// is where the desktop apps are downloaded.
+const CONTENT = { en, ro };
+const DATE_LOCALE = { en: "en-GB", ro: "ro-RO" };
 
-const formatDate = (iso: string) =>
-  new Date(`${iso}T00:00:00`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+const formatDate = (iso: string, language: "en" | "ro") =>
+  new Date(`${iso}T00:00:00`).toLocaleDateString(DATE_LOCALE[language], { day: "numeric", month: "long", year: "numeric" });
 
 /** A paragraph, with the contact address as a mail link. */
 function Paragraph({ text }: { text: string }) {
@@ -49,9 +58,16 @@ function Body({ lines }: { lines: string[] }) {
 }
 
 export default function LegalPage({ kind }: { kind: LegalDocumentKind }) {
-  const doc = documents[kind];
+  const { t } = useTranslation();
+  const language = currentLanguage();
+  const isWindows = useVisitorBuild() === "win-x64";
+  const doc = CONTENT[language]({ publisher: LEGAL_PUBLISHER, email: LEGAL_CONTACT_EMAIL, isDesktop: true, isWindows })[kind];
+
+  useEffect(() => {
+    document.title = t(kind === "privacy" ? "meta.privacyTitle" : "meta.termsTitle");
+  }, [t, kind]);
   const sections = doc.sections.filter((s) => s.only !== "phone");
-  const other = kind === "privacy" ? { href: "./terms.html", label: "Terms of use" } : { href: "./privacy.html", label: "Privacy policy" };
+  const other = kind === "privacy" ? { href: "./terms.html", label: t("legal.terms") } : { href: "./privacy.html", label: t("legal.privacy") };
 
   return (
     <>
@@ -63,8 +79,9 @@ export default function LegalPage({ kind }: { kind: LegalDocumentKind }) {
           </a>
           <nav className="nav__links">
             <a href={other.href}>{other.label}</a>
+            <LanguagePicker />
             <a className="btn btn--small" href="./#download">
-              Download
+              {t("nav.download")}
             </a>
           </nav>
         </div>
@@ -73,10 +90,10 @@ export default function LegalPage({ kind }: { kind: LegalDocumentKind }) {
       <main className="legal">
         <div className="container container--narrow">
           <a className="legal__back" href="./">
-            ← Back to Shiftify
+            {t("legal.back")}
           </a>
           <h1>{doc.title}</h1>
-          <p className="legal__updated">Last updated {formatDate(LEGAL_UPDATED)}</p>
+          <p className="legal__updated">{t("legal.updated", { date: formatDate(LEGAL_UPDATED, language) })}</p>
           <p className="legal__intro">{doc.intro}</p>
           {sections.map((section) => (
             <section key={section.heading}>

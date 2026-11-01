@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const media = (file: string) => `${import.meta.env.BASE_URL}media/${file}`;
 
 const SLIDES = [
-  { file: "01-check-in", alt: "Check in in one tap: today's card logs your hours with a single click" },
-  { file: "02-month-at-a-glance", alt: "Your month at a glance: hours, days off, bank holidays and pay earned so far" },
-  { file: "03-fill-missing-days", alt: "Fill missed days in one go from a list of past working days" },
-  { file: "04-days-off", alt: "Days off counted right: vacation, sick or unpaid leave over a range of days" },
-  { file: "05-export", alt: "Send your timesheet as Excel or PDF" },
-  { file: "06-dark-mode", alt: "Light, dark, or follow your Mac" },
-  { file: "07-private", alt: "Private by design: no account, no server, stored on your Mac, daily backups" },
+  "01-check-in",
+  "02-month-at-a-glance",
+  "03-fill-missing-days",
+  "04-days-off",
+  "05-export",
+  "06-dark-mode",
+  "07-private",
 ];
 
 const AUTOPLAY_MS = 5000;
@@ -17,6 +18,7 @@ const AUTOPLAY_MS = 5000;
 // One slide at a time. The track is a snapping scroll container, so swiping
 // and trackpads work natively; arrows, dots and keys scroll it to a slide.
 export function Gallery() {
+  const { t } = useTranslation();
   const track = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -45,7 +47,7 @@ export function Gallery() {
       className="slider"
       role="region"
       aria-roledescription="carousel"
-      aria-label="Screenshots"
+      aria-label={t("screens.region")}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -58,32 +60,32 @@ export function Gallery() {
     >
       <div className="slider__viewport">
         <div className="slider__track" ref={track} onScroll={onScroll} tabIndex={0}>
-          {SLIDES.map((s, i) => (
+          {SLIDES.map((file, i) => (
             <div
-              key={s.file}
+              key={file}
               className="slider__slide"
               role="group"
               aria-roledescription="slide"
-              aria-label={`${i + 1} of ${SLIDES.length}`}
+              aria-label={t("screens.slideOf", { n: i + 1, total: SLIDES.length })}
             >
-              <img src={media(`slides/${s.file}.jpg`)} alt={s.alt} width={1600} height={1000} loading={i < 2 ? "eager" : "lazy"} />
+              <img src={media(`slides/${file}.jpg`)} alt={t(`screens.alt.${file}`)} width={1600} height={1000} loading={i < 2 ? "eager" : "lazy"} />
             </div>
           ))}
         </div>
-        <button className="slider__arrow slider__arrow--prev" onClick={() => goTo(index - 1)} aria-label="Previous screenshot">
+        <button className="slider__arrow slider__arrow--prev" onClick={() => goTo(index - 1)} aria-label={t("screens.previous")}>
           <Chevron />
         </button>
-        <button className="slider__arrow slider__arrow--next" onClick={() => goTo(index + 1)} aria-label="Next screenshot">
+        <button className="slider__arrow slider__arrow--next" onClick={() => goTo(index + 1)} aria-label={t("screens.next")}>
           <Chevron />
         </button>
       </div>
       <div className="slider__dots">
-        {SLIDES.map((s, i) => (
+        {SLIDES.map((file, i) => (
           <button
-            key={s.file}
+            key={file}
             className={`slider__dot${i === index ? " is-active" : ""}`}
             onClick={() => goTo(i)}
-            aria-label={`Show screenshot ${i + 1}`}
+            aria-label={t("screens.show", { n: i + 1 })}
             aria-current={i === index}
           />
         ))}

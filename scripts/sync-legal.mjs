@@ -11,7 +11,7 @@ const app = path.resolve(process.argv[2] ?? path.join(root, "../shiftify"));
 const from = path.join(app, "src/features/legal");
 const to = path.join(root, "src/legal");
 
-const FILES = ["content/en.ts", "types/legal.types.ts", "constants/legal.constants.ts"];
+const FILES = ["content/en.ts", "content/ro.ts", "types/legal.types.ts", "constants/legal.constants.ts"];
 
 for (const file of FILES) {
   const source = path.join(from, file);

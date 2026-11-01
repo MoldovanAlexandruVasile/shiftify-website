@@ -1,8 +1,11 @@
+import { useTranslation } from "react-i18next";
+
 const media = (file: string) => `${import.meta.env.BASE_URL}media/${file}`;
 
 // The real app (captured from its web build) in a Mac window, light or dark
 // following the visitor's system.
 export function AppWindow() {
+  const { t } = useTranslation();
   return (
     <div className="appwin">
       <div className="appwin__bar" aria-hidden="true">
@@ -16,7 +19,7 @@ export function AppWindow() {
           src={media("app/calendar.jpg")}
           width={1600}
           height={1000}
-          alt="Shiftify's calendar: the month's summary with hours worked and pay earned, today's check-in card and the month view"
+          alt={t("hero.appAlt")}
         />
       </picture>
     </div>

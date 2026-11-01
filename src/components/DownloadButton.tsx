@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { downloadUrl, type Build } from "../config";
 import type { LatestRelease } from "../hooks/useLatestRelease";
 import { useVisitorBuild } from "../hooks/useVisitorBuild";
@@ -7,19 +8,15 @@ type Props = { release: LatestRelease | null; size?: "lg" | "md" };
 type MacBuild = Exclude<Build, "win-x64">;
 
 const MAC_BUILDS: { build: MacBuild; label: string; hint: string }[] = [
-  { build: "mac-arm64", label: "Apple Silicon", hint: "M1 and later" },
-  { build: "mac-x64", label: "Intel", hint: "Older Macs" },
+  { build: "mac-arm64", label: "download.appleSilicon", hint: "download.appleSiliconHint" },
+  { build: "mac-x64", label: "download.intel", hint: "download.intelHint" },
 ];
-const LABELS: Record<Build, string> = {
-  "mac-arm64": "Mac, Apple Silicon",
-  "mac-x64": "Mac, Intel",
-  "win-x64": "Windows, 64-bit",
-};
 
 // Two buttons: Mac (the visitor's chip when the browser says, else Apple
 // Silicon; the arrow picks the other) and Windows. The one for the
 // visitor's computer is the highlighted one.
 export function DownloadButton({ release, size = "lg" }: Props) {
+  const { t } = useTranslation();
   const build = useVisitorBuild();
   const isWindows = build === "win-x64";
   const macBuild: MacBuild = isWindows ? "mac-arm64" : build;
@@ -48,7 +45,7 @@ export function DownloadButton({ release, size = "lg" }: Props) {
   };
   const meta = [
     release ? `v${release.version}` : null,
-    LABELS[build],
+    t(`download.builds.${build}`),
     sizeOf(build),
   ]
     .filter(Boolean)
@@ -66,12 +63,12 @@ export function DownloadButton({ release, size = "lg" }: Props) {
             download
           >
             <AppleIcon />
-            Download for Mac
+            {t("download.mac")}
           </a>
           <button
             type="button"
             className={`${macStyle} split__toggle`}
-            aria-label="Choose Apple Silicon or Intel"
+            aria-label={t("download.chooseMac")}
             aria-haspopup="menu"
             aria-expanded={isOpen}
             onClick={() => setIsOpen((open) => !open)}
@@ -93,9 +90,9 @@ export function DownloadButton({ release, size = "lg" }: Props) {
                     {item.build === "mac-arm64" ? <AppleIcon /> : <ChipIcon />}
                   </span>
                   <span className="split__text">
-                    <strong>{item.label}</strong>
+                    <strong>{t(item.label)}</strong>
                     <small>
-                      {[item.hint, sizeOf(item.build)]
+                      {[t(item.hint), sizeOf(item.build)]
                         .filter(Boolean)
                         .join(" · ")}
                     </small>
@@ -103,15 +100,14 @@ export function DownloadButton({ release, size = "lg" }: Props) {
                 </a>
               ))}
               <p className="split__note">
-                Not sure? Apple menu → About This Mac: “Chip” means Apple
-                Silicon, “Processor” means Intel.
+                {t("download.note")}
               </p>
             </div>
           ) : null}
         </div>
         <a className={windowsStyle} href={downloadUrl("win-x64")} download>
           <WindowsIcon />
-          Download for Windows
+          {t("download.windows")}
         </a>
       </div>
       <span className="download__meta">{meta}</span>

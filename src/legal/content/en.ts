@@ -1,15 +1,17 @@
 import type { LegalDocument, LegalDocumentKind } from "../types/legal.types";
 
-type Placeholders = { publisher: string; email: string; isDesktop: boolean };
+/** isWindows: the Windows app (else, on the desktop, the Mac app). */
+type Placeholders = { publisher: string; email: string; isDesktop: boolean; isWindows: boolean };
 
 const en = ({
   publisher,
   email,
   isDesktop,
+  isWindows,
 }: Placeholders): Record<LegalDocumentKind, LegalDocument> => ({
   privacy: {
     title: "Privacy policy",
-    intro: `Shiftify is a timesheet app published by ${publisher}, a personal, non-commercial project made for fun. It is built to keep your data on your ${isDesktop ? "Mac" : "phone"}: there is no account, no server of ours and no tracking.`,
+    intro: `Shiftify is a timesheet app published by ${publisher}, a personal, non-commercial project made for fun. It is built to keep your data on your ${isDesktop ? (isWindows ? "PC" : "Mac") : "phone"}: there is no account, no server of ours and no tracking.`,
     sections: [
       {
         heading: "What the app stores",
@@ -50,14 +52,14 @@ const en = ({
       {
         heading: "Reminders",
         body: [
-          `Each client's reminders (the daily check-in and the monthly one to send the timesheet) are scheduled locally ${isDesktop ? "by the app on your Mac, and shown as macOS notifications" : "by your device's operating system"}. No server is involved and no notification token is created or sent anywhere.`,
+          `Each client's reminders (the daily check-in and the monthly one to send the timesheet) are scheduled locally ${isDesktop ? (isWindows ? "by the app on your PC, and shown as Windows notifications" : "by the app on your Mac, and shown as macOS notifications") : "by your device's operating system"}. No server is involved and no notification token is created or sent anywhere.`,
         ],
       },
       {
         heading: "Daily backups",
         only: "desktop",
         body: [
-          "At the end of each day, the Mac app saves a backup file of your data, keeping the last 14 days. By default it goes to iCloud Drive › Shiftify Backups (Documents if iCloud Drive is off); you can pick another folder or turn daily backups off in Settings › Data. When the folder is in iCloud Drive or another cloud service, that service stores it under its own terms; the files never reach us. Delete all data removes them.",
+          `At the end of each day, the ${isWindows ? "Windows" : "Mac"} app saves a backup file of your data, keeping the last 14 days. By default it goes to iCloud Drive › Shiftify Backups (Documents if iCloud Drive is off); you can pick another folder or turn daily backups off in Settings › Data. When the folder is in iCloud Drive or another cloud service, that service stores it under its own terms; the files never reach us. Delete all data removes them.`,
         ],
       },
       {
@@ -140,7 +142,7 @@ const en = ({
       {
         heading: "No warranty and liability",
         body: [
-          `You download, install and use the app at your own risk. ${isDesktop ? "The Mac app is distributed outside the App Store and is not notarized by Apple. " : ""}You are responsible for your device and for keeping backups of your data.`,
+          `You download, install and use the app at your own risk. ${isDesktop ? (isWindows ? "The Windows app is not signed with a code-signing certificate, so Windows may warn you before installing it. " : "The Mac app is distributed outside the App Store and is not notarized by Apple. ") : ""}You are responsible for your device and for keeping backups of your data.`,
           'The app is provided "as is", without warranties of any kind. To the extent permitted by law, the publisher is not liable for indirect or consequential damages, including lost income or data, arising from the use of the app or from figures it shows. Nothing in these terms limits liability that cannot be limited by law, or your rights as a consumer.',
         ],
       },
