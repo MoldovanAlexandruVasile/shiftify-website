@@ -1,4 +1,5 @@
 import { resolve } from 'node:path'
+import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
@@ -6,7 +7,7 @@ import { defineConfig } from 'vite'
 // Pages sit side by side at the root (privacy.html, terms.html) so relative links stay simple.
 export default defineConfig({
   base: './',
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   build: {
     rollupOptions: {
       input: {

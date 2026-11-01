@@ -68,3 +68,12 @@ browser's language (Romanian for any `ro-*`, English otherwise) until they
 pick one from the RO / EN menu in the top bar; that choice is remembered.
 The legal pages use the app's own `en.ts` / `ro.ts` (see above), in the Mac
 or Windows version for the visitor's computer.
+
+## Styling
+
+Tailwind CSS v4 (`@tailwindcss/vite`). `src/index.css` holds only the theme:
+the app's colours as Tailwind colours (`bg-surface`, `text-muted`,
+`bg-primary`…), with their dark-mode values, plus a few base rules and two
+custom utilities (`bg-hero-glow`, `scrollbar-none`). Components use utility
+classes; shared looks live in small components (`components/ui/`: Container,
+Section, SectionTitle, Card) and `buttonStyles()`.
