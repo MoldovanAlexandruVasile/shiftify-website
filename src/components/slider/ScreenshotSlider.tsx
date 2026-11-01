@@ -13,7 +13,7 @@ export const ScreenshotSlider = () => {
 
   return (
     <div
-      className="mx-auto mt-10 max-w-[1080px] px-5"
+      className="mx-auto mt-10 max-w-[1080px] px-5 max-sm:mt-7"
       role="region"
       aria-roledescription="carousel"
       aria-label={t("screens.region")}

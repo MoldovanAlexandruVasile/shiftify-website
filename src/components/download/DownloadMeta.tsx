@@ -1,6 +1,6 @@
 import { cx } from "../../utils/cx";
 
-type Props = { text: string; isCentered: boolean };
+type Props = { text: string; isCentered?: boolean };
 
 /** "v1.0.7 · Mac, Intel · 132 MB", under the buttons. */
 export const DownloadMeta = ({ text, isCentered }: Props) => (

@@ -7,8 +7,8 @@ type Props = { release: LatestRelease | null };
 
 // Text and buttons beside the app's screen; stacked on narrow screens.
 export const HeroSection = ({ release }: Props) => (
-  <section className="bg-hero-glow pt-20 pb-24 max-hero:pt-12 max-hero:pb-16">
-    <Container className="grid grid-cols-[0.9fr_1.1fr] items-center gap-14 max-hero:grid-cols-1">
+  <section className="bg-hero-glow pt-20 pb-24 max-hero:pt-12 max-hero:pb-16 max-sm:pt-8">
+    <Container className="grid grid-cols-[0.9fr_1.1fr] items-center gap-14 max-hero:grid-cols-1 max-sm:gap-10">
       <HeroCopy release={release} />
       <AppWindow />
     </Container>

@@ -12,7 +12,10 @@ type Props = {
 };
 
 export const Section = ({ id, isTinted = false, isTight = false, children }: Props) => (
-  <section id={id} className={cx(isTight ? "pt-6 pb-18" : "py-22", isTinted && "bg-tint")}>
+  <section
+    id={id}
+    className={cx(isTight ? "pt-6 pb-18 max-sm:pb-12" : "py-22 max-sm:py-14", isTinted && "bg-tint")}
+  >
     {children}
   </section>
 );

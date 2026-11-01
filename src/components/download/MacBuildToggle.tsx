@@ -14,7 +14,7 @@ export const MacBuildToggle = ({ isPrimary, isOpen, onClick }: Props) => {
       type="button"
       className={cx(
         buttonStyles({ isPrimary }),
-        "cursor-pointer rounded-l-none px-4 [&_svg]:transition-transform aria-expanded:[&_svg]:rotate-180",
+        "cursor-pointer rounded-l-none px-4 max-sm:px-3.5 [&_svg]:transition-transform aria-expanded:[&_svg]:rotate-180",
       )}
       aria-label={t("download.chooseMac")}
       aria-haspopup="menu"

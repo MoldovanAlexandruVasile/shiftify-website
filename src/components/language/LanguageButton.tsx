@@ -12,13 +12,15 @@ export const LanguageButton = ({ current, isOpen, onClick }: Props) => {
   return (
     <button
       type="button"
-      className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-line px-2.5 py-[7px] text-[0.85rem] font-semibold text-ink hover:border-primary"
+      className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-line px-2.5 py-[7px] max-sm:px-2 text-[0.85rem] font-semibold text-ink hover:border-primary"
       aria-label={`${t("nav.language")}: ${current.name}`}
       aria-haspopup="menu"
       aria-expanded={isOpen}
       onClick={onClick}
     >
-      <GlobeIcon />
+      <span className="max-sm:hidden">
+        <GlobeIcon />
+      </span>
       {current.label}
       <ChevronDownIcon size={12} />
     </button>

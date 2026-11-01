@@ -12,7 +12,7 @@ type Props = { build: MacBuild; release: LatestRelease | null; isPrimary: boolea
 export const MacDownload = ({ build, release, isPrimary, layout }: Props) => {
   const { root, isOpen, close, toggle } = useDropdown();
   return (
-    <div className="relative inline-flex gap-0.5" ref={root}>
+    <div className="relative inline-flex gap-0.5 max-sm:flex" ref={root}>
       <MacDownloadLink build={build} isPrimary={isPrimary} />
       <MacBuildToggle isPrimary={isPrimary} isOpen={isOpen} onClick={toggle} />
       {isOpen ? <MacBuildMenu release={release} isCentered={layout === "centered"} onPick={close} /> : null}
