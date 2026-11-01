@@ -662,17 +662,25 @@ h1 {
   margin-top: 8px;
 }
 
+/* Always in view at the bottom of the window, like the nav at the top. */
 .footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
   border-top: 1px solid var(--border);
-  padding: 28px 0;
-  font-size: 0.9rem;
+  padding: 14px 0;
+  padding-bottom: max(14px, env(safe-area-inset-bottom));
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
 .footer__inner {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 24px;
+  align-items: center;
+  gap: 6px 24px;
   justify-content: space-between;
 }
 
@@ -686,9 +694,15 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  .footer {
+    padding: 10px 0;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+    font-size: 0.8rem;
+  }
   .footer__inner {
     flex-direction: column;
-    gap: 12px;
+    align-items: flex-start;
+    gap: 4px;
   }
 }
 
