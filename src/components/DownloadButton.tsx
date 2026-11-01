@@ -1,20 +1,28 @@
 import { useEffect, useRef, useState } from "react";
-import { dmgUrl, type MacArch } from "../config";
+import { downloadUrl, type Build } from "../config";
 import type { LatestRelease } from "../hooks/useLatestRelease";
-import { useMacArch } from "../hooks/useMacArch";
+import { useVisitorBuild } from "../hooks/useVisitorBuild";
 
 type Props = { release: LatestRelease | null; size?: "lg" | "md" };
+type MacBuild = Exclude<Build, "win-x64">;
 
-const BUILDS: { arch: MacArch; label: string; hint: string }[] = [
-  { arch: "arm64", label: "Apple Silicon", hint: "M1 and later" },
-  { arch: "x64", label: "Intel", hint: "Older Macs" },
+const MAC_BUILDS: { build: MacBuild; label: string; hint: string }[] = [
+  { build: "mac-arm64", label: "Apple Silicon", hint: "M1 and later" },
+  { build: "mac-x64", label: "Intel", hint: "Older Macs" },
 ];
-const LABELS: Record<MacArch, string> = { arm64: "Apple Silicon", x64: "Intel" };
+const LABELS: Record<Build, string> = {
+  "mac-arm64": "Mac, Apple Silicon",
+  "mac-x64": "Mac, Intel",
+  "win-x64": "Windows, 64-bit",
+};
 
-// "Download for Mac" gets the build for the visitor's Mac (Apple Silicon
-// unless the browser says Intel); the arrow lists both.
+// Two buttons: Mac (the visitor's chip when the browser says, else Apple
+// Silicon; the arrow picks the other) and Windows. The one for the
+// visitor's computer is the highlighted one.
 export function DownloadButton({ release, size = "lg" }: Props) {
-  const arch = useMacArch() ?? "arm64";
+  const build = useVisitorBuild();
+  const isWindows = build === "win-x64";
+  const macBuild: MacBuild = isWindows ? "mac-arm64" : build;
   const [isOpen, setIsOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
 
@@ -34,57 +42,77 @@ export function DownloadButton({ release, size = "lg" }: Props) {
     };
   }, [isOpen]);
 
-  const sizeOf = (build: MacArch) => {
-    const mb = release?.sizeMb[build];
+  const sizeOf = (of: Build) => {
+    const mb = release?.sizeMb[of];
     return mb ? `${mb} MB` : null;
   };
-  const meta = [release ? `v${release.version}` : null, LABELS[arch], sizeOf(arch)]
+  const meta = [
+    release ? `v${release.version}` : null,
+    LABELS[build],
+    sizeOf(build),
+  ]
     .filter(Boolean)
     .join(" · ");
+  const macStyle = isWindows ? "btn" : "btn btn--primary";
+  const windowsStyle = isWindows ? "btn btn--primary" : "btn";
 
   return (
     <div className={`download download--${size}`}>
-      <div className="split" ref={root}>
-        <a className="btn btn--primary split__main" href={dmgUrl(arch)} download>
-          <AppleIcon />
-          Download for Mac
+      <div className="download__buttons">
+        <div className="split" ref={root}>
+          <a
+            className={`${macStyle} split__main`}
+            href={downloadUrl(macBuild)}
+            download
+          >
+            <AppleIcon />
+            Download for Mac
+          </a>
+          <button
+            type="button"
+            className={`${macStyle} split__toggle`}
+            aria-label="Choose Apple Silicon or Intel"
+            aria-haspopup="menu"
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((open) => !open)}
+          >
+            <ChevronIcon />
+          </button>
+          {isOpen ? (
+            <div className="split__menu" role="menu">
+              {MAC_BUILDS.map((item) => (
+                <a
+                  key={item.build}
+                  className="split__item"
+                  role="menuitem"
+                  href={downloadUrl(item.build)}
+                  download
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span className="split__icon">
+                    {item.build === "mac-arm64" ? <AppleIcon /> : <ChipIcon />}
+                  </span>
+                  <span className="split__text">
+                    <strong>{item.label}</strong>
+                    <small>
+                      {[item.hint, sizeOf(item.build)]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </small>
+                  </span>
+                </a>
+              ))}
+              <p className="split__note">
+                Not sure? Apple menu → About This Mac: “Chip” means Apple
+                Silicon, “Processor” means Intel.
+              </p>
+            </div>
+          ) : null}
+        </div>
+        <a className={windowsStyle} href={downloadUrl("win-x64")} download>
+          <WindowsIcon />
+          Download for Windows
         </a>
-        <button
-          type="button"
-          className="btn btn--primary split__toggle"
-          aria-label="Choose Apple Silicon or Intel"
-          aria-haspopup="menu"
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((open) => !open)}
-        >
-          <ChevronIcon />
-        </button>
-        {isOpen ? (
-          <div className="split__menu" role="menu">
-            {BUILDS.map((build) => (
-              <a
-                key={build.arch}
-                className="split__item"
-                role="menuitem"
-                href={dmgUrl(build.arch)}
-                download
-                onClick={() => setIsOpen(false)}
-              >
-                <span className="split__icon">
-                  {build.arch === "arm64" ? <AppleIcon /> : <ChipIcon />}
-                </span>
-                <span className="split__text">
-                  <strong>{build.label}</strong>
-                  <small>{[build.hint, sizeOf(build.arch)].filter(Boolean).join(" · ")}</small>
-                </span>
-              </a>
-            ))}
-            <p className="split__note">
-              Not sure? Apple menu → About This Mac: “Chip” means Apple Silicon, “Processor” means
-              Intel.
-            </p>
-          </div>
-        ) : null}
       </div>
       <span className="download__meta">{meta}</span>
     </div>
@@ -93,8 +121,28 @@ export function DownloadButton({ release, size = "lg" }: Props) {
 
 function AppleIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
       <path d="M16.37 12.62c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-2.99-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.77-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.39-.92-2.41-3.66zM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.58.67-1.09 1.75-.96 2.79 1.02.08 2.05-.52 2.68-1.27z" />
+    </svg>
+  );
+}
+
+function WindowsIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M3 5.5 10.5 4.5v7H3zM11.5 4.4 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z" />
     </svg>
   );
 }

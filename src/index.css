@@ -186,6 +186,17 @@ a {
   gap: 10px;
 }
 
+/* Download for Mac (with a menu of both builds) and for Windows */
+.download__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cta .download__buttons {
+  justify-content: center;
+}
+
 /* Download for Mac, with a menu of both builds */
 .split {
   position: relative;

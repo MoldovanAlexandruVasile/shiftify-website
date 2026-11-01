@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { LATEST_RELEASE_API, dmgAssetName, type MacArch } from "../config";
+import { ASSET_NAMES, LATEST_RELEASE_API, type Build } from "../config";
 
 export type LatestRelease = {
   version: string;
   publishedAt: string;
-  sizeMb: Record<MacArch, number | null>;
+  sizeMb: Record<Build, number | null>;
 };
 
 type GitHubAsset = { name: string; size: number };
@@ -25,14 +25,18 @@ export function useLatestRelease() {
       .then((res) => (res.ok ? (res.json() as Promise<GitHubRelease>) : null))
       .then((data) => {
         if (!data) return;
-        const sizeOf = (arch: MacArch) => {
-          const dmg = data.assets.find((a) => a.name === dmgAssetName(arch));
-          return dmg ? Math.round(dmg.size / 1_000_000) : null;
+        const sizeOf = (build: Build) => {
+          const file = data.assets.find((a) => a.name === ASSET_NAMES[build]);
+          return file ? Math.round(file.size / 1_000_000) : null;
         };
         setRelease({
           version: data.tag_name.replace(/^v\.?/, ""),
           publishedAt: data.published_at,
-          sizeMb: { arm64: sizeOf("arm64"), x64: sizeOf("x64") },
+          sizeMb: {
+            "mac-arm64": sizeOf("mac-arm64"),
+            "mac-x64": sizeOf("mac-x64"),
+            "win-x64": sizeOf("win-x64"),
+          },
         });
       })
       .catch(() => {});

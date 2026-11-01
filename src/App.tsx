@@ -28,42 +28,42 @@ const FEATURES = [
   {
     icon: "🔔",
     title: "Reminders that matter",
-    text: "A macOS notification on working days you haven't logged, and a monthly one to send your timesheet.",
+    text: "A notification on working days you haven't logged, and a monthly one to send your timesheet.",
   },
   {
     icon: "🔒",
     title: "Private by design",
-    text: "No account, no server, no tracking. Your data stays on your Mac, with daily backups you control.",
+    text: "No account, no server, no tracking. Your data stays on your computer, with daily backups you control.",
   },
 ];
 
 const STEPS = [
   {
     title: "Download",
-    text: "Get the .dmg for your Mac: Apple Silicon or Intel.",
+    text: "Get the installer for your computer: Mac (Apple Silicon or Intel) or Windows.",
   },
   {
     title: "Install",
-    text: "Open the .dmg and drag Shiftify into your Applications folder.",
+    text: "Mac: open the .dmg and drag Shiftify into Applications. Windows: run the installer; it opens Shiftify when done.",
   },
   {
     title: "Allow it once",
-    text: "Shiftify isn't from the App Store, so the first time macOS asks: go to System Settings → Privacy & Security and click “Open Anyway”.",
+    text: "Shiftify isn't from an app store, so the first time it asks. Mac: System Settings → Privacy & Security → “Open Anyway”. Windows: on “Windows protected your PC”, click More info → Run anyway.",
   },
 ];
 
 const FAQ = [
   {
     q: "Where is my data stored?",
-    a: "Only on your Mac, in ~/Library/Application Support/Shiftify. Nothing is sent to a server. Back up and restore from Settings → Data.",
+    a: "Only on your computer: ~/Library/Application Support/Shiftify on a Mac, %APPDATA%\\Shiftify on Windows. Nothing is sent to a server. Back up and restore from Settings → Data.",
   },
   {
     q: "Is it just for Romania?",
     a: "It was built for PFAs and freelancers in Romania (with CUI lookup and Romanian), but bank holidays work for many countries and it's fully in English too.",
   },
   {
-    q: "Why does macOS warn me when I open it?",
-    a: "Apps downloaded outside the App Store without Apple notarization are quarantined. Approve it once in Privacy & Security and it opens normally from then on.",
+    q: "Why does my computer warn me when I open it?",
+    a: "Shiftify isn't notarized by Apple or signed with a Windows code-signing certificate, which cost money for a free project. macOS asks once (Privacy & Security), and Windows SmartScreen warns once (More info → Run anyway); after that it opens normally.",
   },
   {
     q: "Is Shiftify a commercial product?",
@@ -107,7 +107,7 @@ export default function App() {
         <section className="hero">
           <div className="container hero__inner">
             <div className="hero__copy">
-              <span className="pill">Now on macOS</span>
+              <span className="pill">Now on macOS and Windows</span>
               <h1>
                 Timesheets for freelancers,{" "}
                 <span className="grad">without the spreadsheet.</span>
@@ -115,7 +115,7 @@ export default function App() {
               <p className="lead">
                 Log the days you work for each client, take days off, and send a
                 monthly timesheet as Excel or PDF. Bank holidays are applied for
-                you. Everything stays on your Mac.
+                you. Everything stays on your computer.
               </p>
               <DownloadButton release={release} />
             </div>
@@ -207,7 +207,7 @@ export default function App() {
                 width={88}
                 height={88}
               />
-              <h2>Get Shiftify for Mac</h2>
+              <h2>Get Shiftify for Mac or Windows</h2>
               <p>Free. Private. Works offline.</p>
               <DownloadButton release={release} />
             </div>
