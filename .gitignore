@@ -25,3 +25,8 @@ dist-ssr
 
 # Claude app settings
 .claude/
+
+# Capture tool (screenshots, slides, promo video)
+capture/node_modules
+capture/.frames
+capture/stills

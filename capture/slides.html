@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1440px; height: 900px; overflow: hidden; }
+  body {
+    font-family: "Plus Jakarta Sans", -apple-system, sans-serif;
+    background: #f7f5ff;
+    position: relative;
+    color: #0f172a;
+  }
+  .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; }
+  .b1 { width: 720px; height: 620px; left: -160px; top: -220px; background: #c4b5fd; }
+  .b2 { width: 640px; height: 560px; right: -180px; top: 120px; background: #ddd6fe; }
+  .b3 { width: 560px; height: 480px; left: 380px; bottom: -300px; background: #a7f3d0; opacity: .35; }
+  body.dark { background: #120a24; color: #f8fafc; }
+  body.dark .b1 { background: #5b21b6; opacity: .45; }
+  body.dark .b2 { background: #4c1d95; opacity: .4; }
+  body.dark .b3 { background: #065f46; opacity: .3; }
+
+  .head { position: absolute; left: 0; right: 0; top: 64px; text-align: center; }
+  h1 { font-size: 64px; line-height: 1.05; font-weight: 800; letter-spacing: -0.035em; }
+  h1 .accent { background: linear-gradient(90deg, #7c3aed, #a21caf); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  body.dark h1 .accent { background: linear-gradient(90deg, #a78bfa, #e879f9); -webkit-background-clip: text; background-clip: text; }
+  .sub { margin-top: 18px; font-size: 24px; font-weight: 500; color: #475569; }
+  body.dark .sub { color: #cbd5e1; }
+
+  .window {
+    position: absolute; left: 50%; top: 300px; width: 1100px; transform: translateX(-50%);
+    border-radius: 18px; overflow: hidden; background: #fff;
+    box-shadow: 0 50px 100px -30px rgba(46, 16, 101, .45), 0 0 0 1px rgba(15, 23, 42, .08);
+  }
+  .window .bar { height: 34px; background: #f1f5f9; display: flex; align-items: center; gap: 8px; padding-left: 16px; border-bottom: 1px solid #e2e8f0; }
+  body.dark .window .bar { background: #111827; border-color: #1f2937; }
+  .window .bar i { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
+  .window .bar i:nth-child(2) { background: #febc2e; }
+  .window .bar i:nth-child(3) { background: #28c840; }
+  .window img { display: block; width: 100%; }
+
+  .pop {
+    position: absolute; background-repeat: no-repeat;
+    box-shadow: 0 40px 80px -24px rgba(46, 16, 101, .5), 0 0 0 1px rgba(15, 23, 42, .06);
+  }
+  .card {
+    position: absolute; background: #fff; border-radius: 22px; padding: 26px 28px;
+    box-shadow: 0 40px 80px -24px rgba(46, 16, 101, .45);
+  }
+  .private { left: 50%; top: 300px; transform: translateX(-50%); width: 760px; padding: 10px 0; }
+  .row { display: flex; align-items: center; gap: 22px; padding: 22px 34px; }
+  .row + .row { border-top: 1px solid #eef0f6; }
+  .row .ic { width: 58px; height: 58px; border-radius: 16px; display: grid; place-items: center; background: #ede9fe; flex: none; }
+  .row .ic svg { width: 28px; height: 28px; stroke: #7c3aed; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .row b { display: block; font-size: 26px; font-weight: 700; }
+  .row span { font-size: 19px; color: #64748b; }
+  .row .ok { margin-left: auto; width: 34px; height: 34px; border-radius: 50%; background: #10b981; display: grid; place-items: center; }
+  .row .ok svg { width: 18px; height: 18px; stroke: #fff; stroke-width: 3; fill: none; }
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="head"><h1 id="h1"></h1><p class="sub" id="sub"></p></div>
+<div id="stage"></div>
+<script>
+  // Each slide: headline (two lines, the second in the accent), subtitle, the
+  // app screen in a window, and an optional card lifted out of a real screen.
+  const SLIDES = [
+    { name: "01-check-in", l1: "Check in", l2: "in one tap", sub: "Today’s card logs your hours with a single click.",
+      screen: "calendar", pop: { crop: "calendar.today", lift: 1.3, dx: 40, dy: -20 } },
+    { name: "02-month-at-a-glance", l1: "Your month,", l2: "at a glance", sub: "Hours, days off, bank holidays and what you’ve earned so far.",
+      screen: "calendar", pop: { crop: "calendar.summary", lift: 1.12, dy: -10 } },
+    { name: "03-fill-missing-days", l1: "Forgot a few days?", l2: "Fill them in one go", sub: "Every past working day with nothing logged, in one list.",
+      screen: "missing-days", pop: { crop: "missing-days.modal", lift: 1.12, dy: -20 } },
+    { name: "04-days-off", l1: "Days off,", l2: "counted right", sub: "Vacation, sick or unpaid leave. Bank holidays are applied for you.",
+      screen: "day-off", pop: { crop: "day-off.kind", lift: 1.25, dy: -10 } },
+    { name: "05-export", l1: "Send your timesheet", l2: "as Excel or PDF", sub: "A clean monthly timesheet for every client, ready to send.",
+      screen: "export", pop: { crop: "export-preview.document", scale: 0.5, x: 780, y: 290 } },
+    { name: "06-dark-mode", dark: true, l1: "Easy on the eyes,", l2: "day or night", sub: "Light, dark, or follow your Mac.",
+      screen: "calendar-dark", pop: { crop: "calendar-dark.today", lift: 1.3, dx: 40, dy: -20 } },
+    { name: "07-private", l1: "Private", l2: "by design", sub: "Everything stays on your Mac.", private: true },
+  ];
+
+  const ICONS = {
+    user: '<path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/>',
+    cloud: '<path d="M17.5 19H9a7 7 0 1 1 6.7-9h1.8a4.5 4.5 0 1 1 0 9Z"/><path d="m2 2 20 20"/>',
+    laptop: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/>',
+    backup: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/>',
+  };
+  const check = '<svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>';
+  const row = (icon, title, text) =>
+    `<div class="row"><div class="ic"><svg viewBox="0 0 24 24">${ICONS[icon]}</svg></div><div><b>${title}</b><span>${text}</span></div><div class="ok">${check}</div></div>`;
+
+  window.render = (index, crops) => {
+    const s = SLIDES[index];
+    document.body.classList.toggle("dark", !!s.dark);
+    document.getElementById("h1").innerHTML = `${s.l1}<br><span class="accent">${s.l2}</span>`;
+    document.getElementById("sub").textContent = s.sub;
+    const stage = document.getElementById("stage");
+    if (s.private) {
+      stage.innerHTML = `<div class="card private">
+        ${row("user", "No account", "Open it and start logging. No sign-up, no email.")}
+        ${row("cloud", "No server", "Nothing is sent anywhere. No tracking, no ads.")}
+        ${row("laptop", "Stored on this Mac", "Your clients and days live in a local database.")}
+        ${row("backup", "Daily backups", "Kept for 14 days, plus backups to any folder you pick.")}
+      </div>`;
+      return s.name;
+    }
+    stage.innerHTML = `<div class="window"><div class="bar"><i></i><i></i><i></i></div><img src="raw/${s.screen}.png"></div>`;
+    if (s.pop) {
+      const c = crops[s.pop.crop];
+      // "lift": the card stays over its spot in the window, enlarged around
+      // its centre; otherwise it is placed at x, y at its own scale.
+      let k, x, y;
+      if (s.pop.lift) {
+        const shown = WINDOW.width / 2880;
+        k = shown * s.pop.lift;
+        x = WINDOW.left + (c.x + c.w / 2) * shown - (c.w * k) / 2 + (s.pop.dx ?? 0);
+        y = WINDOW.top + (c.y + c.h / 2) * shown - (c.h * k) / 2 + (s.pop.dy ?? 0);
+      } else {
+        k = s.pop.scale / 2; // raw images are 2x
+        x = s.pop.x;
+        y = s.pop.y;
+      }
+      const el = document.createElement("div");
+      el.className = "pop";
+      Object.assign(el.style, {
+        left: `${x}px`, top: `${y}px`,
+        width: `${c.w * k}px`, height: `${c.h * k}px`,
+        borderRadius: `${c.radius * k}px`,
+        backgroundImage: `url(raw/${c.screen}.png)`,
+        backgroundSize: `${2880 * k}px ${1800 * k}px`,
+        backgroundPosition: `${-c.x * k}px ${-c.y * k}px`,
+      });
+      stage.appendChild(el);
+    }
+    return s.name;
+  };
+  window.SLIDE_COUNT = SLIDES.length;
+  // Matches .window: 1100 wide, centred, top 300 plus the 34px title bar.
+  const WINDOW = { width: 1100, left: (1440 - 1100) / 2, top: 300 + 34 };
+</script>
+</body>
+</html>

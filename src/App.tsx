@@ -1,5 +1,6 @@
-import { CalendarMock } from "./components/CalendarMock";
+import { AppWindow } from "./components/AppWindow";
 import { DownloadButton } from "./components/DownloadButton";
+import { Gallery } from "./components/Gallery";
 import { RELEASES_URL } from "./config";
 import { useLatestRelease } from "./hooks/useLatestRelease";
 
@@ -7,7 +8,7 @@ const FEATURES = [
   {
     icon: "📅",
     title: "One tap a day",
-    text: "Check in from today's card, or open any day to log hours, a half day off, or a whole range of vacation.",
+    text: "Check in from today's card, or open any day to log hours, a half day off, or a whole range of leave. Forgot a few? Fill them all at once.",
   },
   {
     icon: "🏛️",
@@ -27,12 +28,12 @@ const FEATURES = [
   {
     icon: "🔔",
     title: "Reminders that matter",
-    text: "A daily nudge only on working days you haven't logged, and a monthly one to send your timesheet.",
+    text: "A macOS notification on working days you haven't logged, and a monthly one to send your timesheet.",
   },
   {
     icon: "🔒",
     title: "Private by design",
-    text: "No account, no backend, no tracking. Your data stays on your Mac, with backups you control.",
+    text: "No account, no server, no tracking. Your data stays on your Mac, with daily backups you control.",
   },
 ];
 
@@ -46,10 +47,6 @@ const STEPS = [
 ];
 
 const FAQ = [
-  {
-    q: "Is Shiftify free?",
-    a: "Yes. Download it and use it, no account or subscription needed.",
-  },
   {
     q: "Where is my data stored?",
     a: "Only on your Mac, in ~/Library/Application Support/Shiftify. Nothing is sent to a server. Back up and restore from Settings → Data.",
@@ -80,6 +77,7 @@ export default function App() {
             Shiftify
           </a>
           <nav className="nav__links">
+            <a href="#screens">Screens</a>
             <a href="#features">Features</a>
             <a href="#install">Install</a>
             <a href="#faq">FAQ</a>
@@ -104,8 +102,33 @@ export default function App() {
               </p>
               <DownloadButton release={release} />
             </div>
-            <CalendarMock />
+            <AppWindow />
           </div>
+        </section>
+
+        <section id="watch" className="section section--tight">
+          <div className="container">
+            <video
+              className="promo"
+              src={`${import.meta.env.BASE_URL}media/promo.mp4`}
+              poster={`${import.meta.env.BASE_URL}media/promo-poster.jpg`}
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+              preload="metadata"
+              aria-label="Shiftify in 25 seconds"
+            />
+          </div>
+        </section>
+
+        <section id="screens" className="section section--tinted">
+          <div className="container">
+            <h2 className="section__title">A closer look</h2>
+            <p className="section__lead">Real screens from the Mac app.</p>
+          </div>
+          <Gallery />
         </section>
 
         <section id="features" className="section">
@@ -160,7 +183,7 @@ export default function App() {
             <div className="cta">
               <img src={`${import.meta.env.BASE_URL}icon.png`} alt="" width={88} height={88} />
               <h2>Get Shiftify for Mac</h2>
-              <p>Free. Private. Works offline.</p>
+              <p>Private. Offline. Built for freelancers.</p>
               <DownloadButton release={release} />
             </div>
           </div>

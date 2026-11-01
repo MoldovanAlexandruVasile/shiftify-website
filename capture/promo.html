@@ -1,0 +1,389 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; }
+  body { font-family: "Plus Jakarta Sans", sans-serif; color: #0f172a; background: #f7f5ff; position: relative; }
+  .scene { position: absolute; inset: 0; opacity: 0; }
+  .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+
+  /* Backgrounds */
+  .bg-light { position: absolute; inset: 0; background: #f7f5ff; overflow: hidden; }
+  .bg-light .blob { position: absolute; border-radius: 50%; filter: blur(110px); }
+  .bg-dark { position: absolute; inset: 0; background: radial-gradient(60% 70% at 50% 42%, #4c1d95 0%, #2e1065 45%, #160733 100%); }
+
+  /* Type */
+  .big { font-size: 112px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.08; }
+  .huge { font-size: 150px; font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
+  .accent { color: #7c3aed; }
+  .word { display: inline-block; white-space: pre; }
+  .caption { position: absolute; left: 0; right: 0; bottom: 110px; text-align: center; font-size: 56px; font-weight: 800; letter-spacing: -0.03em; }
+
+  /* Logo scenes */
+  .icon { width: 190px; height: 190px; border-radius: 44px; box-shadow: 0 30px 80px -10px rgba(124, 58, 237, .7); }
+  .logo-name { margin-top: 36px; color: #fff; font-size: 132px; font-weight: 800; letter-spacing: -0.04em; }
+  .logo-tag { margin-top: 10px; color: #ddd6fe; font-size: 38px; font-weight: 600; }
+  .pill { margin-top: 34px; padding: 14px 30px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); color: #fff; font-size: 26px; font-weight: 700; }
+
+  /* Inline chips inside headlines */
+  .ichip { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; width: 92px; height: 92px; border-radius: 26px; background: #fff; box-shadow: 0 14px 30px -10px rgba(76, 29, 149, .35); margin: 0 18px; position: relative; top: -8px; }
+  .ichip svg { width: 46px; height: 46px; stroke: #7c3aed; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .ichip img { width: 92px; height: 92px; border-radius: 26px; }
+  .cycle { position: relative; width: 1800px; height: 1.12em; }
+  .cycle > span { position: absolute; left: 0; right: 0; top: 0; text-align: center; white-space: nowrap; color: #7c3aed; }
+
+  /* Floating chips */
+  .chip { position: absolute; display: flex; align-items: center; gap: 14px; padding: 22px 34px; border-radius: 999px; background: #fff; font-family: Inter, sans-serif; font-size: 34px; font-weight: 600; white-space: nowrap; box-shadow: 0 18px 40px -16px rgba(76, 29, 149, .35); }
+  .chip svg { width: 32px; height: 32px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .chip.violet { background: #5b21b6; color: #fff; }
+  .chip.green { background: #d1fae5; color: #065f46; }
+  .chip.amber { background: #fef3c7; color: #92400e; }
+  .chip.soft { background: #ede9fe; color: #5b21b6; }
+
+  /* App cards (recreated from the app's styles) */
+  .ui { font-family: Inter, sans-serif; }
+  .card { background: #fff; border-radius: 26px; box-shadow: 0 50px 100px -30px rgba(46, 16, 101, .45), 0 0 0 1px rgba(15, 23, 42, .05); }
+  .summary { position: absolute; left: 50%; top: 50%; width: 1180px; padding: 40px 44px; }
+  .summary .row1 { display: flex; justify-content: space-between; font-size: 24px; font-weight: 600; letter-spacing: .06em; color: #64748b; }
+  .summary .row1 b { color: #7c3aed; letter-spacing: 0; font-size: 28px; }
+  .bar { height: 12px; border-radius: 6px; background: #eef0f6; margin: 22px 0 28px; overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 6px; background: #7c3aed; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .stat { background: #f1f5f9; border-radius: 16px; padding: 20px 24px; }
+  .stat small { font-size: 22px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .stat small::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+  .stat b { display: block; font-size: 46px; font-weight: 700; margin-top: 6px; }
+  .stat span { font-size: 20px; color: #64748b; }
+  .earned { margin-top: 22px; background: #f5f3ff; border-radius: 18px; padding: 26px 30px; }
+  .earned .top { display: flex; justify-content: space-between; align-items: baseline; }
+  .earned .top div { font-size: 28px; font-weight: 700; color: #5b21b6; }
+  .earned .top div span { display: block; font-size: 22px; font-weight: 500; color: #64748b; margin-top: 4px; }
+  .earned .top b { font-size: 50px; font-weight: 700; }
+  .earned .bar { margin: 20px 0 10px; background: #fff; }
+  .earned p { font-size: 22px; color: #64748b; }
+
+  .notif { position: absolute; left: 50%; top: 70px; width: 820px; padding: 26px 30px; border-radius: 28px; display: flex; gap: 22px; align-items: flex-start; background: rgba(250, 250, 252, .92); backdrop-filter: blur(20px); box-shadow: 0 30px 70px -20px rgba(15, 23, 42, .35), 0 0 0 1px rgba(15,23,42,.06); }
+  .notif img { width: 72px; height: 72px; border-radius: 17px; }
+  .notif .t { flex: 1; }
+  .notif .h { display: flex; justify-content: space-between; font-size: 22px; color: #64748b; font-weight: 500; }
+  .notif .h b { color: #0f172a; font-weight: 600; letter-spacing: .02em; }
+  .notif .title { font-size: 30px; font-weight: 700; margin-top: 4px; }
+  .notif .body { font-size: 26px; color: #334155; margin-top: 2px; }
+
+  .window { position: absolute; left: 50%; width: 1240px; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 60px 120px -30px rgba(46, 16, 101, .5), 0 0 0 1px rgba(15, 23, 42, .08); }
+  .window .tb { height: 38px; background: #f1f5f9; display: flex; gap: 9px; align-items: center; padding-left: 18px; border-bottom: 1px solid #e2e8f0; }
+  .window .tb i { width: 13px; height: 13px; border-radius: 50%; background: #ff5f57; }
+  .window .tb i:nth-child(2) { background: #febc2e; }
+  .window .tb i:nth-child(3) { background: #28c840; }
+  .window img { display: block; width: 100%; }
+  .callout { position: absolute; padding: 28px 32px; width: 520px; }
+  .callout .k { display: flex; align-items: center; gap: 16px; font-size: 30px; font-weight: 700; }
+  .callout .k .ok { width: 46px; height: 46px; border-radius: 14px; background: #d1fae5; display: grid; place-items: center; }
+  .callout .k .ok svg { width: 26px; height: 26px; stroke: #059669; stroke-width: 3; fill: none; }
+  .callout p { font-size: 23px; color: #64748b; margin: 8px 0 18px 62px; }
+  .callout .bar { margin: 0 0 0 62px; height: 10px; }
+  .callout .bar i { background: #10b981; }
+
+  .check { width: 230px; height: 230px; border-radius: 50%; background: #7c3aed; display: grid; place-items: center; box-shadow: 0 30px 80px -10px rgba(124, 58, 237, .6); }
+  .check svg { width: 120px; height: 120px; stroke: #fff; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .confetti { position: absolute; border-radius: 3px; }
+</style>
+</head>
+<body>
+<!-- Scene: opening logo -->
+<div class="scene" id="s-logo">
+  <div class="bg-dark"></div>
+  <div class="center">
+    <img class="icon" id="logo-icon" src="../public/icon.png" />
+    <div class="logo-name" id="logo-name">Shiftify</div>
+    <div class="logo-tag" id="logo-tag">Timesheets for freelancers</div>
+  </div>
+</div>
+
+<!-- Scene: floating chips -->
+<div class="scene" id="s-chips"><div class="bg-light" data-blobs></div><div id="chips"></div></div>
+
+<!-- Scene: introducing -->
+<div class="scene" id="s-intro"><div class="bg-light" data-blobs></div>
+  <div class="center"><div class="big" id="intro-1">Introducing</div><div class="huge accent" id="intro-2">Shiftify</div></div>
+</div>
+
+<!-- Scene: every workday in one place -->
+<div class="scene" id="s-every"><div class="bg-light" data-blobs></div>
+  <div class="center big">
+    <div><span class="word" id="e1">Every</span><span class="ichip" id="e2"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span class="word" id="e3">workday,</span></div>
+    <div><span class="word" id="e4">in</span><span class="ichip" id="e5"><img src="../public/icon.png" /></span><span class="word accent" id="e6">one place.</span></div>
+  </div>
+</div>
+
+<!-- Scene: every day off counted right -->
+<div class="scene" id="s-cycle"><div class="bg-light" data-blobs></div>
+  <div class="center big">
+    <div id="c1">Every</div>
+    <div class="cycle" id="cycle"></div>
+    <div id="c3">counted right.</div>
+  </div>
+</div>
+
+<!-- Scene: month summary card -->
+<div class="scene" id="s-summary"><div class="bg-light" data-blobs></div>
+  <div class="card summary ui" id="summary">
+    <div class="row1"><span>NOVEMBER SUMMARY</span><b id="pct">0% of target</b></div>
+    <div class="bar"><i id="bar1"></i></div>
+    <div class="stats">
+      <div class="stat"><small style="color:#7c3aed">Worked</small><b id="worked">0h</b><span>of 144h</span></div>
+      <div class="stat"><small style="color:#64748b">Bank holidays</small><b>1</b><span>8h paid</span></div>
+      <div class="stat"><small style="color:#10b981">Days off</small><b>2</b><span>2 vacation</span></div>
+    </div>
+    <div class="earned">
+      <div class="top"><div>Earned so far<span>45,00 lei/h</span></div><b id="earned">0,00 lei</b></div>
+      <div class="bar"><i id="bar2"></i></div>
+      <p>of 6.840,00 lei expected by month end</p>
+    </div>
+  </div>
+  <div class="notif ui" id="notif">
+    <img src="../public/icon.png" />
+    <div class="t">
+      <div class="h"><b>SHIFTIFY</b><span>now</span></div>
+      <div class="title">Time to check in</div>
+      <div class="body">You haven't logged today at Acme SRL yet.</div>
+    </div>
+  </div>
+  <div class="caption" id="cap1">See your month <span class="accent">at a glance</span></div>
+  <div class="caption" id="cap2">A nudge on the days <span class="accent">you forget</span></div>
+</div>
+
+<!-- Scene: export -->
+<div class="scene" id="s-export"><div class="bg-light" data-blobs></div>
+  <div class="center" style="justify-content:flex-start;padding-top:70px">
+    <div class="big" style="font-size:88px" id="x1">Send your timesheet</div>
+    <div class="big accent" style="font-size:88px" id="x2">as Excel or PDF</div>
+  </div>
+  <div class="window" id="xwin"><div class="tb"><i></i><i></i><i></i></div><img src="raw/export-preview.png" /></div>
+  <div class="card callout ui" id="callout">
+    <div class="k"><span class="ok"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>October · sent</div>
+    <p>21 days · 168h · 7.560,00 lei</p>
+    <div class="bar"><i id="bar3"></i></div>
+  </div>
+</div>
+
+<!-- Scene: done -->
+<div class="scene" id="s-done"><div class="bg-light" data-blobs></div>
+  <div id="confetti"></div>
+  <div class="center">
+    <div class="check" id="check"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></div>
+    <div class="big" style="margin-top:50px" id="d1">Every month,</div>
+    <div class="big accent" id="d2">sent.</div>
+  </div>
+</div>
+
+<!-- Scene: end card -->
+<div class="scene" id="s-end">
+  <div class="bg-dark"></div>
+  <div class="center">
+    <img class="icon" id="end-icon" src="../public/icon.png" />
+    <div class="logo-name" id="end-name">Shiftify</div>
+    <div class="logo-tag" id="end-tag">Timesheets for freelancers, on your Mac.</div>
+    <div class="pill" id="end-pill">Download for macOS</div>
+  </div>
+</div>
+
+<script>
+  // ---------- Timeline helpers ----------
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const p = (t, a, b) => clamp((t - a) / (b - a)); // progress of t through [a, b]
+  const outCubic = (x) => 1 - Math.pow(1 - x, 3);
+  const inOutCubic = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const outBack = (x) => 1 + 2.4 * Math.pow(x - 1, 3) + 1.4 * Math.pow(x - 1, 2);
+  const $ = (id) => document.getElementById(id);
+  const set = (el, { o, x = 0, y = 0, s = 1, blur = 0, r = 0 }) => {
+    if (o !== undefined) el.style.opacity = o;
+    el.style.transform = `${el.dataset.base ?? ""} translate(${x}px, ${y}px) scale(${s}) rotate(${r}deg)`;
+    el.style.filter = blur > 0.05 ? `blur(${blur}px)` : "none";
+  };
+  // An element that blurs/rises in at `at` and blurs out at `out`.
+  const blurIn = (el, t, at, out = Infinity, d = 0.55) => {
+    const i = outCubic(p(t, at, at + d));
+    const o = out === Infinity ? 0 : p(t, out, out + 0.4);
+    set(el, { o: i * (1 - o), y: (1 - i) * 40 - o * 20, blur: (1 - i) * 18 + o * 14 });
+  };
+  // Scene visibility: fades in over 0.35s at `a`, out over 0.4s at `b`.
+  const scene = (id, t, a, b) => {
+    const el = $(id);
+    const v = Math.min(p(t, a, a + 0.35), 1 - p(t, b - 0.4, b));
+    el.style.opacity = v;
+    el.style.display = v > 0 ? "block" : "none";
+    return v > 0;
+  };
+
+  // Soft blobs behind every light scene, drifting slowly.
+  document.querySelectorAll("[data-blobs]").forEach((bg) => {
+    bg.innerHTML = [
+      ["#c4b5fd", 900, 760, -200, -260],
+      ["#ddd6fe", 820, 700, 1250, 80],
+      ["#a7f3d0", 760, 600, 420, 760],
+    ].map(([c, w, h, x, y]) => `<div class="blob" style="background:${c};width:${w}px;height:${h}px;left:${x}px;top:${y}px;opacity:.55"></div>`).join("");
+  });
+
+  // ---------- Chips field ----------
+  const ICON = {
+    building: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    flag: '<path d="M4 21V4h12l-2 4 2 4H4"/>',
+    pill: '<rect x="3" y="8" width="18" height="8" rx="4"/><path d="M12 8v8"/>',
+    doc: '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/>',
+    lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    check: '<path d="m5 12 5 5 9-10"/>',
+    cal: '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+    note: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+    plane: '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+    alert: '<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/>',
+  };
+  const CHIPS = [
+    ["Acme SRL", "building"], ["Vacation", "plane", "green"], ["8h worked", "clock"], ["Bank holiday", "flag", "soft"],
+    ["Sick leave", "pill"], ["timesheet.pdf", "doc", "violet"], ["Half day", "sun"], ["October · sent", "lock"],
+    ["Check in · 8h", "check", "violet"], ["Week 47", "cal"], ["2 days missing", "alert", "amber"], ["Release day note", "note"],
+    ["Globex GmbH", "building"], ["Export Excel", "doc", "soft"], ["Day off", "sun", "green"], ["45,00 lei/h", "clock"],
+  ];
+  const chipsEl = $("chips");
+  const chipEls = CHIPS.map(([label, icon, tone], i) => {
+    const el = document.createElement("div");
+    el.className = `chip ${tone ?? ""}`;
+    el.innerHTML = `<svg viewBox="0 0 24 24">${ICON[icon]}</svg>${label}`;
+    const col = i % 4, row = Math.floor(i / 4);
+    el.style.left = `${-120 + col * 560 + (row % 2) * 250}px`;
+    el.style.top = `${30 + row * 270}px`;
+    chipsEl.appendChild(el);
+    return el;
+  });
+
+  // ---------- Cycling words ----------
+  const CYCLE = [["vacation day,", "plane"], ["sick day,", "pill"], ["bank holiday,", "flag"]];
+  const cycleEl = $("cycle");
+  cycleEl.innerHTML = CYCLE.map(([w, icon]) => `<span><span class="ichip" style="margin-left:0"><svg viewBox="0 0 24 24">${ICON[icon]}</svg></span>${w}</span>`).join("");
+
+  // ---------- Confetti (seeded, so every render is identical) ----------
+  let seed = 7;
+  const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const confetti = Array.from({ length: 70 }, () => {
+    const el = document.createElement("div");
+    el.className = "confetti";
+    const w = 8 + rand() * 12;
+    Object.assign(el.style, { width: `${w}px`, height: `${w * (0.5 + rand())}px`, background: ["#7c3aed", "#a78bfa", "#10b981", "#f59e0b", "#c4b5fd"][Math.floor(rand() * 5)] });
+    $("confetti").appendChild(el);
+    const a = rand() * Math.PI * 2;
+    return { el, a, v: 300 + rand() * 520, spin: (rand() - 0.5) * 720, delay: rand() * 0.15 };
+  });
+
+  const fmtLei = (n) => n.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " lei";
+
+  // ---------- The timeline ----------
+  window.DURATION = 25;
+  window.render = (t) => {
+    // 0–2.8 opening logo
+    if (scene("s-logo", t, -1, 2.8)) {
+      const i = outBack(p(t, 0.1, 0.8));
+      set($("logo-icon"), { o: p(t, 0.1, 0.5), s: 0.55 + 0.45 * i, y: (1 - outCubic(p(t, 0.9, 1.5))) * 40 });
+      blurIn($("logo-name"), t, 0.9);
+      blurIn($("logo-tag"), t, 1.3);
+    }
+    // 2.4–5.0 chips drifting
+    if (scene("s-chips", t, 2.4, 5.0)) {
+      chipEls.forEach((el, i) => {
+        const at = 2.45 + (i % 7) * 0.06;
+        const k = outBack(p(t, at, at + 0.5));
+        const drift = (t - 2.4) * 60;
+        set(el, { o: p(t, at, at + 0.25), s: 0.7 + 0.3 * k, x: drift, y: -drift * 0.5, r: -10, blur: p(t, 4.5, 5.0) * 10 });
+      });
+    }
+    // 4.7–6.8 introducing
+    if (scene("s-intro", t, 4.7, 6.8)) {
+      blurIn($("intro-1"), t, 4.85, 6.3);
+      blurIn($("intro-2"), t, 5.2, 6.35);
+    }
+    // 6.5–9.9 every workday, in one place
+    if (scene("s-every", t, 6.5, 9.9)) {
+      ["e1", "e2", "e3", "e4", "e5", "e6"].forEach((id, i) => blurIn($(id), t, 6.6 + i * 0.26 + (i > 2 ? 0.3 : 0), 9.4));
+    }
+    // 9.6–13.0 every vacation day / sick day / bank holiday, counted right
+    if (scene("s-cycle", t, 9.6, 13.0)) {
+      blurIn($("c1"), t, 9.7, 12.5);
+      blurIn($("c3"), t, 10.0, 12.5);
+      [...cycleEl.children].forEach((el, i) => {
+        const at = 9.85 + i * 0.85;
+        const inn = outCubic(p(t, at, at + 0.4));
+        const out = i < CYCLE.length - 1 ? outCubic(p(t, at + 0.85, at + 1.2)) : p(t, 12.5, 12.9);
+        set(el, { o: inn * (1 - out), y: (1 - inn) * 60 - out * 60, blur: (1 - inn) * 14 + out * 14 });
+      });
+    }
+    // 12.7–18.2 month summary, then the reminder
+    if (scene("s-summary", t, 12.7, 18.2)) {
+      const card = $("summary");
+      card.dataset.base = "translate(-50%, -58%)";
+      const rise = outCubic(p(t, 12.8, 13.5));
+      const dim = p(t, 15.5, 16.0);
+      set(card, { o: rise, y: (1 - rise) * 120, s: 1 - dim * 0.06, blur: dim * 8 });
+      card.style.opacity = rise * (1 - dim * 0.45);
+      const fill = inOutCubic(p(t, 13.4, 14.8));
+      $("bar1").style.width = `${61 * fill}%`;
+      $("bar2").style.width = `${58 * fill}%`;
+      $("pct").textContent = `${Math.round(61 * fill)}% of target`;
+      $("worked").textContent = `${Math.round(88 * fill)}h`;
+      $("earned").textContent = fmtLei(Math.round(3960 * fill));
+      blurIn($("cap1"), t, 13.6, 15.4);
+      const n = $("notif");
+      n.dataset.base = "translateX(-50%)";
+      const drop = outBack(p(t, 15.7, 16.3));
+      set(n, { o: p(t, 15.7, 15.9), y: (1 - drop) * -220 });
+      blurIn($("cap2"), t, 16.1);
+    }
+    // 17.9–21.6 export
+    if (scene("s-export", t, 17.9, 21.6)) {
+      blurIn($("x1"), t, 18.0);
+      blurIn($("x2"), t, 18.25);
+      const w = $("xwin");
+      w.dataset.base = "translateX(-50%)";
+      const up = outCubic(p(t, 18.3, 19.1));
+      w.style.top = "330px";
+      set(w, { o: up, y: (1 - up) * 300 });
+      const c = $("callout");
+      c.style.left = "1240px";
+      c.style.top = "640px";
+      const k = outBack(p(t, 19.3, 19.8));
+      set(c, { o: p(t, 19.3, 19.5), s: 0.8 + 0.2 * k, x: (1 - k) * 40 });
+      $("bar3").style.width = `${100 * inOutCubic(p(t, 19.6, 20.6))}%`;
+    }
+    // 21.3–23.4 done
+    if (scene("s-done", t, 21.3, 23.4)) {
+      const k = outBack(p(t, 21.4, 21.9));
+      set($("check"), { o: p(t, 21.4, 21.6), s: 0.3 + 0.7 * k });
+      blurIn($("d1"), t, 21.75);
+      blurIn($("d2"), t, 22.0);
+      confetti.forEach(({ el, a, v, spin, delay }) => {
+        const q = p(t, 21.55 + delay, 23.2);
+        const d = outCubic(q) * v;
+        const x = 960 + Math.cos(a) * d;
+        const y = 330 + Math.sin(a) * d + q * q * 260;
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.style.opacity = q > 0 ? 1 - p(q, 0.65, 1) : 0;
+        el.style.transform = `rotate(${spin * q}deg)`;
+      });
+    }
+    // 23.1–25 end card
+    if (scene("s-end", t, 23.1, 99)) {
+      const i = outBack(p(t, 23.2, 23.8));
+      set($("end-icon"), { o: p(t, 23.2, 23.5), s: 0.6 + 0.4 * i });
+      blurIn($("end-name"), t, 23.45);
+      blurIn($("end-tag"), t, 23.7);
+      blurIn($("end-pill"), t, 23.95);
+    }
+  };
+  window.render(0);
+</script>
+</body>
+</html>
