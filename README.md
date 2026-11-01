@@ -53,3 +53,9 @@ node promo.mjs      # 25 s motion promo (promo.html) → public/media/promo.mp4
 `promo.mjs 3 12.5` renders stills at those seconds instead, for checking a
 change to `promo.html`. The video is encoded with AVFoundation
 (`encode.swift`), so it needs macOS but no ffmpeg.
+
+## Privacy policy and Terms of use
+
+`privacy.html` and `terms.html` show the app's own legal texts (the Mac app
+version), copied from the shiftify repo into `src/legal/`. After changing them
+in the app, run `npm run sync:legal` here and commit.

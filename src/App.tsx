@@ -1,7 +1,7 @@
 import { AppWindow } from "./components/AppWindow";
 import { DownloadButton } from "./components/DownloadButton";
 import { Gallery } from "./components/Gallery";
-import { RELEASES_URL } from "./config";
+import { SiteFooter } from "./components/SiteFooter";
 import { useLatestRelease } from "./hooks/useLatestRelease";
 
 const FEATURES = [
@@ -38,8 +38,14 @@ const FEATURES = [
 ];
 
 const STEPS = [
-  { title: "Download", text: "Get Shiftify.dmg, a universal build for Apple Silicon and Intel Macs." },
-  { title: "Install", text: "Open the .dmg and drag Shiftify into your Applications folder." },
+  {
+    title: "Download",
+    text: "Get Shiftify.dmg, a universal build for Apple Silicon and Intel Macs.",
+  },
+  {
+    title: "Install",
+    text: "Open the .dmg and drag Shiftify into your Applications folder.",
+  },
   {
     title: "Allow it once",
     text: "Shiftify isn't from the App Store, so the first time macOS asks: go to System Settings → Privacy & Security and click “Open Anyway”.",
@@ -60,6 +66,10 @@ const FAQ = [
     a: "Apps downloaded outside the App Store without Apple notarization are quarantined. Approve it once in Privacy & Security and it opens normally from then on.",
   },
   {
+    q: "Is Shiftify a commercial product?",
+    a: "No. It's a personal project, made for fun and shared for free. It isn't sold or meant for commercial use, and support and updates aren't guaranteed. You download and use it at your own risk.",
+  },
+  {
     q: "Will updating lose my data?",
     a: "No. Install a newer version over the old one and your data stays where it is.",
   },
@@ -73,7 +83,12 @@ export default function App() {
       <header className="nav">
         <div className="container nav__inner">
           <a className="brand" href="#top">
-            <img src={`${import.meta.env.BASE_URL}icon.png`} alt="" width={32} height={32} />
+            <img
+              src={`${import.meta.env.BASE_URL}icon.png`}
+              alt=""
+              width={32}
+              height={32}
+            />
             Shiftify
           </a>
           <nav className="nav__links">
@@ -94,11 +109,13 @@ export default function App() {
             <div className="hero__copy">
               <span className="pill">Now on macOS</span>
               <h1>
-                Timesheets for freelancers, <span className="grad">without the spreadsheet.</span>
+                Timesheets for freelancers,{" "}
+                <span className="grad">without the spreadsheet.</span>
               </h1>
               <p className="lead">
-                Log the days you work for each client, take days off, and send a monthly timesheet as Excel or
-                PDF. Bank holidays are applied for you. Everything stays on your Mac.
+                Log the days you work for each client, take days off, and send a
+                monthly timesheet as Excel or PDF. Bank holidays are applied for
+                you. Everything stays on your Mac.
               </p>
               <DownloadButton release={release} />
             </div>
@@ -126,15 +143,18 @@ export default function App() {
         <section id="screens" className="section section--tinted">
           <div className="container">
             <h2 className="section__title">A closer look</h2>
-            <p className="section__lead">Real screens from the Mac app.</p>
           </div>
           <Gallery />
         </section>
 
         <section id="features" className="section">
           <div className="container">
-            <h2 className="section__title">Everything a monthly timesheet needs</h2>
-            <p className="section__lead">Built for PFAs and freelancers who bill by the day.</p>
+            <h2 className="section__title">
+              Everything a monthly timesheet needs
+            </h2>
+            <p className="section__lead">
+              Built for PFAs and freelancers who bill by the day.
+            </p>
             <div className="features">
               {FEATURES.map((f) => (
                 <article key={f.title} className="card">
@@ -181,21 +201,21 @@ export default function App() {
         <section id="download" className="section">
           <div className="container">
             <div className="cta">
-              <img src={`${import.meta.env.BASE_URL}icon.png`} alt="" width={88} height={88} />
+              <img
+                src={`${import.meta.env.BASE_URL}icon.png`}
+                alt=""
+                width={88}
+                height={88}
+              />
               <h2>Get Shiftify for Mac</h2>
-              <p>Private. Offline. Built for freelancers.</p>
+              <p>Free. Private. Works offline.</p>
               <DownloadButton release={release} />
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="container footer__inner">
-          <span>© {new Date().getFullYear()} Shiftify</span>
-          <a href={RELEASES_URL}>All releases</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
