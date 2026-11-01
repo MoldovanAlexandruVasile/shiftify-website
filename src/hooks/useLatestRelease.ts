@@ -23,7 +23,7 @@ export function useLatestRelease() {
         if (!data) return;
         const dmg = data.assets.find((a) => a.name === DMG_ASSET_NAME);
         setRelease({
-          version: data.tag_name.replace(/^v/, ""),
+          version: data.tag_name.replace(/^v\.?/, ""),
           publishedAt: data.published_at,
           sizeMb: dmg ? Math.round(dmg.size / 1_000_000) : null,
         });
