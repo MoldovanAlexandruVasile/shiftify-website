@@ -1,0 +1,178 @@
+import { CalendarMock } from "./components/CalendarMock";
+import { DownloadButton } from "./components/DownloadButton";
+import { RELEASES_URL } from "./config";
+import { useLatestRelease } from "./hooks/useLatestRelease";
+
+const FEATURES = [
+  {
+    icon: "📅",
+    title: "One tap a day",
+    text: "Check in from today's card, or open any day to log hours, a half day off, or a whole range of vacation.",
+  },
+  {
+    icon: "🏛️",
+    title: "Bank holidays, handled",
+    text: "Each client gets its country's public holidays applied automatically, so your working days are always right.",
+  },
+  {
+    icon: "📄",
+    title: "Timesheets in Excel or PDF",
+    text: "Send a clean monthly timesheet to each client. Sent months lock so nothing changes after the fact.",
+  },
+  {
+    icon: "👥",
+    title: "Multiple clients",
+    text: "Separate hours, work week, leave and pay for every client. Switch between them from the header.",
+  },
+  {
+    icon: "🔔",
+    title: "Reminders that matter",
+    text: "A daily nudge only on working days you haven't logged, and a monthly one to send your timesheet.",
+  },
+  {
+    icon: "🔒",
+    title: "Private by design",
+    text: "No account, no backend, no tracking. Your data stays on your Mac, with backups you control.",
+  },
+];
+
+const STEPS = [
+  { title: "Download", text: "Get Shiftify.dmg, a universal build for Apple Silicon and Intel Macs." },
+  { title: "Install", text: "Open the .dmg and drag Shiftify into your Applications folder." },
+  {
+    title: "Allow it once",
+    text: "Shiftify isn't from the App Store, so the first time macOS asks: go to System Settings → Privacy & Security and click “Open Anyway”.",
+  },
+];
+
+const FAQ = [
+  {
+    q: "Is Shiftify free?",
+    a: "Yes. Download it and use it, no account or subscription needed.",
+  },
+  {
+    q: "Where is my data stored?",
+    a: "Only on your Mac, in ~/Library/Application Support/Shiftify. Nothing is sent to a server. Back up and restore from Settings → Data.",
+  },
+  {
+    q: "Is it just for Romania?",
+    a: "It was built for PFAs and freelancers in Romania (with CUI lookup and Romanian), but bank holidays work for many countries and it's fully in English too.",
+  },
+  {
+    q: "Why does macOS warn me when I open it?",
+    a: "Apps downloaded outside the App Store without Apple notarization are quarantined. Approve it once in Privacy & Security and it opens normally from then on.",
+  },
+  {
+    q: "Will updating lose my data?",
+    a: "No. Install a newer version over the old one and your data stays where it is.",
+  },
+];
+
+export default function App() {
+  const release = useLatestRelease();
+
+  return (
+    <>
+      <header className="nav">
+        <div className="container nav__inner">
+          <a className="brand" href="#top">
+            <img src={`${import.meta.env.BASE_URL}icon.png`} alt="" width={32} height={32} />
+            Shiftify
+          </a>
+          <nav className="nav__links">
+            <a href="#features">Features</a>
+            <a href="#install">Install</a>
+            <a href="#faq">FAQ</a>
+            <a className="btn btn--small" href="#download">
+              Download
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="top">
+        <section className="hero">
+          <div className="container hero__inner">
+            <div className="hero__copy">
+              <span className="pill">Now on macOS</span>
+              <h1>
+                Timesheets for freelancers, <span className="grad">without the spreadsheet.</span>
+              </h1>
+              <p className="lead">
+                Log the days you work for each client, take days off, and send a monthly timesheet as Excel or
+                PDF. Bank holidays are applied for you. Everything stays on your Mac.
+              </p>
+              <DownloadButton release={release} />
+            </div>
+            <CalendarMock />
+          </div>
+        </section>
+
+        <section id="features" className="section">
+          <div className="container">
+            <h2 className="section__title">Everything a monthly timesheet needs</h2>
+            <p className="section__lead">Built for PFAs and freelancers who bill by the day.</p>
+            <div className="features">
+              {FEATURES.map((f) => (
+                <article key={f.title} className="card">
+                  <div className="card__icon" aria-hidden="true">
+                    {f.icon}
+                  </div>
+                  <h3>{f.title}</h3>
+                  <p>{f.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="install" className="section section--tinted">
+          <div className="container">
+            <h2 className="section__title">Install in a minute</h2>
+            <ol className="steps">
+              {STEPS.map((s, i) => (
+                <li key={s.title} className="step">
+                  <span className="step__num">{i + 1}</span>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section id="faq" className="section">
+          <div className="container container--narrow">
+            <h2 className="section__title">Questions</h2>
+            <div className="faq">
+              {FAQ.map((item) => (
+                <details key={item.q}>
+                  <summary>{item.q}</summary>
+                  <p>{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="download" className="section">
+          <div className="container">
+            <div className="cta">
+              <img src={`${import.meta.env.BASE_URL}icon.png`} alt="" width={88} height={88} />
+              <h2>Get Shiftify for Mac</h2>
+              <p>Free. Private. Works offline.</p>
+              <DownloadButton release={release} />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer">
+        <div className="container footer__inner">
+          <span>© {new Date().getFullYear()} Shiftify</span>
+          <a href={RELEASES_URL}>All releases</a>
+        </div>
+      </footer>
+    </>
+  );
+}
