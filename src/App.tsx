@@ -40,7 +40,7 @@ const FEATURES = [
 const STEPS = [
   {
     title: "Download",
-    text: "Get Shiftify.dmg, a universal build for Apple Silicon and Intel Macs.",
+    text: "Get the .dmg for your Mac: Apple Silicon or Intel.",
   },
   {
     title: "Install",

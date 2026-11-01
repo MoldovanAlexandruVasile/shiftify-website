@@ -55,6 +55,18 @@ body {
   background: var(--bg);
 }
 
+/* The footer sits at the bottom of the window, even on short pages. */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+#root > main {
+  flex: 1;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 72px;
@@ -172,6 +184,94 @@ a {
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+}
+
+/* Download for Mac, with a menu of both builds */
+.split {
+  position: relative;
+  display: inline-flex;
+  gap: 2px;
+}
+
+.split__main {
+  border-radius: 999px 0 0 999px;
+}
+
+.split__toggle {
+  border: 0;
+  border-radius: 0 999px 999px 0;
+  padding: 14px 16px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.split__toggle svg {
+  transition: transform 0.15s ease;
+}
+
+.split__toggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.split__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 20;
+  width: min(300px, calc(100vw - 32px));
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.cta .split__menu {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.split__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--text);
+}
+
+.split__item:hover,
+.split__item:focus-visible {
+  background: var(--surface-tint);
+}
+
+.split__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--primary-soft);
+  color: var(--on-primary-soft);
+}
+
+.split__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.split__text small {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.split__note {
+  margin: 4px 0 0;
+  padding: 8px 12px 6px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
 }
 
 .download__meta {
