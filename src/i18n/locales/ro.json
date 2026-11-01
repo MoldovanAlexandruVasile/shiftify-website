@@ -15,28 +15,28 @@
   "hero": {
     "pill": "Acum pe macOS și Windows",
     "title": "Pontaje pentru freelanceri,",
-    "titleAccent": "fără foi de calcul.",
-    "lead": "Notează zilele lucrate pentru fiecare client, ia zile libere și trimite pontajul lunar în Excel sau PDF. Sărbătorile legale sunt aplicate pentru tine. Totul rămâne pe calculatorul tău.",
-    "appAlt": "Calendarul Shiftify: rezumatul lunii cu orele lucrate și câștigul, cardul de pontaj pentru azi și luna"
+    "titleAccent": "fără bătăi de cap.",
+    "lead": "Notează zilele lucrate pentru fiecare client, marchează concediile și trimite pontajul lunar în Excel sau PDF. Sărbătorile legale se aplică automat. Totul rămâne pe calculatorul tău.",
+    "appAlt": "Calendarul Shiftify: rezumatul lunii cu orele lucrate și suma câștigată, cardul de pontaj al zilei și calendarul lunii"
   },
   "video": {
     "label": "Shiftify în 25 de secunde"
   },
   "screens": {
-    "title": "Privește mai de aproape",
+    "title": "Aruncă o privire",
     "region": "Capturi de ecran",
     "previous": "Captura anterioară",
     "next": "Captura următoare",
     "show": "Arată captura {{n}}",
     "slideOf": "{{n}} din {{total}}",
     "alt": {
-      "01-check-in": "Pontaj dintr-o atingere: cardul de azi îți notează orele cu un singur clic",
-      "02-month-at-a-glance": "Luna dintr-o privire: ore, zile libere, sărbători legale și cât ai câștigat până acum",
-      "03-fill-missing-days": "Completează dintr-odată zilele lucrătoare uitate, dintr-o listă",
-      "04-days-off": "Zile libere calculate corect: concediu de odihnă, medical sau fără plată, pe un interval de zile",
+      "01-check-in": "Pontaj dintr-un clic: cardul zilei îți înregistrează orele",
+      "02-month-at-a-glance": "Toată luna dintr-o privire: ore, zile libere, sărbători legale și cât ai câștigat până acum",
+      "03-fill-missing-days": "Completează toate zilele lipsă deodată, dintr-o singură listă",
+      "04-days-off": "Concedii socotite corect: de odihnă, medical sau fără plată, pe mai multe zile odată",
       "05-export": "Trimite pontajul în Excel sau PDF",
-      "06-dark-mode": "Luminos, întunecat sau după dispozitivul tău",
-      "07-private": "Privat din principiu: fără cont, fără server, salvat pe dispozitivul tău, copii de rezervă zilnice"
+      "06-dark-mode": "Temă luminoasă, întunecată sau după dispozitivul tău",
+      "07-private": "Privat din start: fără cont, fără server, datele rămân pe dispozitivul tău, cu copii de rezervă zilnice"
     }
   },
   "features": {
@@ -44,33 +44,33 @@
     "lead": "Făcut pentru PFA-uri și freelanceri care facturează pe zi.",
     "items": [
       {
-        "title": "O atingere pe zi",
-        "text": "Pontează din cardul de azi sau deschide orice zi ca să notezi ore, o jumătate de zi liberă sau un concediu întreg. Ai uitat câteva? Completează-le pe toate odată."
+        "title": "Un clic pe zi",
+        "text": "Pontează din cardul zilei sau deschide orice zi ca să notezi orele, o jumătate de zi liberă sau un concediu de mai multe zile. Ai uitat câteva zile? Completează-le pe toate deodată."
       },
       {
-        "title": "Sărbători legale, rezolvate",
-        "text": "Fiecare client primește automat sărbătorile legale din țara lui, ca zilele lucrătoare să fie mereu corecte."
+        "title": "Sărbătorile legale, incluse",
+        "text": "Pentru fiecare client se aplică automat sărbătorile legale din țara lui, așa că zilele lucrătoare sunt mereu corecte."
       },
       {
         "title": "Pontaje în Excel sau PDF",
-        "text": "Trimite fiecărui client un pontaj lunar curat. Lunile trimise se blochează, ca nimic să nu se schimbe ulterior."
+        "text": "Trimite fiecărui client un pontaj lunar îngrijit. Lunile trimise se blochează, ca nimic să nu se mai schimbe după aceea."
       },
       {
         "title": "Mai mulți clienți",
-        "text": "Ore, săptămână de lucru, concedii și plată separate pentru fiecare client. Treci de la unul la altul din antet."
+        "text": "Fiecare client are propriul program, propriile concedii și propria plată. Treci de la unul la altul din antet."
       },
       {
-        "title": "Mementouri utile",
-        "text": "O notificare în zilele lucrătoare pe care nu le-ai notat și una lunară ca să trimiți pontajul."
+        "title": "Mementouri la timp",
+        "text": "O notificare în zilele lucrătoare în care n-ai pontat nimic și una lunară, ca să nu uiți să trimiți pontajul."
       },
       {
-        "title": "Privat din principiu",
-        "text": "Fără cont, fără server, fără urmărire. Datele tale rămân pe calculatorul tău, cu copii de rezervă zilnice pe care le controlezi."
+        "title": "Privat din start",
+        "text": "Fără cont, fără server, fără urmărire. Datele tale rămân pe calculatorul tău, iar copiile de rezervă zilnice ajung unde alegi tu."
       }
     ]
   },
   "install": {
-    "title": "Instalare într-un minut",
+    "title": "Instalezi într-un minut",
     "tabs": "Sistemul tău",
     "mac": "Mac",
     "windows": "Windows",
@@ -78,29 +78,29 @@
       "mac": [
         {
           "title": "Descarcă",
-          "text": "Alege cipul Mac-ului tău (Apple Silicon pentru M1 și mai noi, sau Intel) și descarcă fișierul .dmg."
+          "text": "Alege cipul Mac-ului tău (Apple Silicon pentru M1 și modelele mai noi, sau Intel) și descarcă fișierul .dmg."
         },
         {
           "title": "Trage în Aplicații",
           "text": "Deschide fișierul .dmg și trage Shiftify în dosarul Aplicații."
         },
         {
-          "title": "Permite-l o dată",
+          "title": "Confirmă o singură dată",
           "text": "Deschide Shiftify. Prima dată, macOS spune că nu poate verifica aplicația: apasă Gata, apoi mergi la Configurări sistem → Confidențialitate și securitate și apasă „Deschide oricum”."
         }
       ],
       "windows": [
         {
           "title": "Descarcă",
-          "text": "Descarcă programul de instalare (Shiftify-Setup-x64.exe). Merge și pe Windows on ARM."
+          "text": "Descarcă programul de instalare (Shiftify-Setup-x64.exe). Funcționează și pe Windows pe ARM."
         },
         {
-          "title": "Permite-l o dată",
-          "text": "Rulează-l. Dacă SmartScreen spune „Windows a protejat PC-ul”, apasă Mai multe informații → Executare oricum."
+          "title": "Confirmă o singură dată",
+          "text": "Rulează-l. Dacă SmartScreen afișează „Windows a protejat PC-ul”, apasă Mai multe informații → Executare oricum."
         },
         {
           "title": "Gata",
-          "text": "Se instalează doar pentru tine, fără drepturi de administrator, și deschide Shiftify. Îl găsești apoi în meniul Start."
+          "text": "Se instalează doar pentru tine, fără drepturi de administrator, și pornește Shiftify. O găsești apoi în meniul Start."
         }
       ]
     }
@@ -110,19 +110,19 @@
     "items": [
       {
         "q": "Unde sunt salvate datele mele?",
-        "a": "Doar pe calculatorul tău: ~/Library/Application Support/Shiftify pe Mac, %APPDATA%\\Shiftify pe Windows. Nimic nu este trimis la un server. Tu alegi unde sunt copiile de rezervă: dosarul pentru copiile zilnice îl alegi în Setări → Date, iar locul fiecărei copii sau al fiecărui pontaj exportat îl alegi când îl salvezi. Restaurarea se face din Setări → Date."
+        "a": "Doar pe calculatorul tău: ~/Library/Application Support/Shiftify pe Mac, %APPDATA%\\Shiftify pe Windows. Nu se trimite nimic către vreun server. Tu decizi unde ajung copiile de rezervă: dosarul pentru cele zilnice îl setezi în Setări → Date, iar fiecare copie sau pontaj exportat se salvează unde vrei tu. Restaurarea se face tot din Setări → Date."
       },
       {
-        "q": "Este doar pentru România?",
-        "a": "A fost făcută pentru PFA-uri și freelanceri din România (cu căutare după CUI și în limba română), dar sărbătorile legale funcționează pentru multe țări și este complet și în engleză."
+        "q": "E doar pentru România?",
+        "a": "A fost gândită pentru PFA-uri și freelanceri din România (cu completare după CUI și interfață în română), dar are sărbătorile legale pentru multe țări și e disponibilă integral și în engleză."
       },
       {
         "q": "De ce mă avertizează calculatorul când o deschid?",
-        "a": "Shiftify nu este notarizată de Apple și nici semnată cu un certificat de semnare de cod pentru Windows, care costă bani pentru un proiect gratuit. macOS întreabă o dată (Confidențialitate și securitate), iar Windows SmartScreen avertizează o dată (Mai multe informații → Executare oricum); după aceea se deschide normal."
+        "a": "Shiftify nu e notarizată de Apple și nici semnată cu un certificat de semnare a codului pentru Windows: amândouă costă, iar proiectul e gratuit. macOS cere confirmarea o singură dată (Confidențialitate și securitate), iar Windows SmartScreen avertizează o singură dată (Mai multe informații → Executare oricum); după aceea se deschide normal."
       },
       {
         "q": "Este Shiftify un produs comercial?",
-        "a": "Nu. Este un proiect personal, făcut din plăcere și oferit gratuit. Nu este vândut și nu este destinat uzului comercial, iar suportul și actualizările nu sunt garantate. O descarci și o folosești pe propria răspundere."
+        "a": "Nu. E un proiect personal, făcut din plăcere și oferit gratuit. Nu se vinde și nu e destinat uzului comercial, iar asistența și actualizările nu sunt garantate. O descarci și o folosești pe propria răspundere."
       },
       {
         "q": "Pierd datele la actualizare?",
@@ -131,18 +131,18 @@
     ]
   },
   "cta": {
-    "title": "Ia Shiftify pentru Mac sau Windows",
-    "text": "Gratuit. Privat. Funcționează offline."
+    "title": "Descarcă Shiftify pentru Mac sau Windows",
+    "text": "Gratuit. Privat. Merge și fără internet."
   },
   "download": {
     "mac": "Descarcă pentru Mac",
     "windows": "Descarcă pentru Windows",
     "chooseMac": "Alege Apple Silicon sau Intel",
     "appleSilicon": "Apple Silicon",
-    "appleSiliconHint": "M1 și mai noi",
+    "appleSiliconHint": "M1 și modelele mai noi",
     "intel": "Intel",
     "intelHint": "Mac-uri mai vechi",
-    "note": "Nu ești sigur? Meniul Apple → Despre acest Mac: „Cip” înseamnă Apple Silicon, „Procesor” înseamnă Intel.",
+    "note": "Nu știi sigur? Meniul Apple → Despre acest Mac: „Cip” înseamnă Apple Silicon, „Procesor” înseamnă Intel.",
     "builds": {
       "mac-arm64": "Mac, Apple Silicon",
       "mac-x64": "Mac, Intel",
