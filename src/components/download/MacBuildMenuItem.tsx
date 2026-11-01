@@ -3,15 +3,11 @@ import { useTranslation } from "react-i18next";
 import { downloadUrl } from "../../config";
 import type { LatestRelease } from "../../hooks/useLatestRelease";
 import { fileSize, joinMeta } from "../../utils/downloadMeta";
-import { AppleIcon } from "../icons/AppleIcon";
-import { ChipIcon } from "../icons/ChipIcon";
-import type { MAC_BUILDS } from "./macBuilds";
+import { IconTile } from "../ui/IconTile";
+import { MacBuildIcon } from "./MacBuildIcon";
+import type { MacBuildOption } from "./macBuilds";
 
-type Props = {
-  item: (typeof MAC_BUILDS)[number];
-  release: LatestRelease | null;
-  onPick: () => void;
-};
+type Props = { item: MacBuildOption; release: LatestRelease | null; onPick: () => void };
 
 export const MacBuildMenuItem = ({ item, release, onPick }: Props) => {
   const { t } = useTranslation();
@@ -23,9 +19,9 @@ export const MacBuildMenuItem = ({ item, release, onPick }: Props) => {
       download
       onClick={onPick}
     >
-      <span className="grid size-9 place-items-center rounded-[10px] bg-primary-soft text-on-primary-soft">
-        {item.build === "mac-arm64" ? <AppleIcon /> : <ChipIcon />}
-      </span>
+      <IconTile size="sm">
+        <MacBuildIcon build={item.build} />
+      </IconTile>
       <span className="flex flex-col">
         <strong>{t(item.label)}</strong>
         <small className="text-[0.8rem] text-muted">{joinMeta([t(item.hint), fileSize(release, item.build)])}</small>

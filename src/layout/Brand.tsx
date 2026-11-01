@@ -1,10 +1,10 @@
-import { assetUrl } from "../utils/media";
+import { AppIcon } from "../components/ui/AppIcon";
 
 type Props = { href: string };
 
 export const Brand = ({ href }: Props) => (
   <a className="flex items-center gap-2.5 text-[1.1rem] font-bold" href={href}>
-    <img className="rounded-lg" src={assetUrl("icon.png")} alt="" width={32} height={32} />
+    <AppIcon size={32} className="rounded-lg" />
     Shiftify
   </a>
 );

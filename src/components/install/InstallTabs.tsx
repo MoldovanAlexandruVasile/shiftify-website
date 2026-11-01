@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { cx } from "../../utils/cx";
+import { InstallTab } from "./InstallTab";
 import { SYSTEMS, type System } from "./system";
 
 type Props = { system: System; onPick: (system: System) => void };
@@ -14,19 +14,7 @@ export const InstallTabs = ({ system, onPick }: Props) => {
       aria-label={t("install.tabs")}
     >
       {SYSTEMS.map((s) => (
-        <button
-          key={s}
-          type="button"
-          role="tab"
-          aria-selected={s === system}
-          className={cx(
-            "cursor-pointer rounded-full px-5.5 py-2 font-semibold",
-            s === system ? "bg-primary text-on-primary" : "text-muted",
-          )}
-          onClick={() => onPick(s)}
-        >
-          {t(`install.${s}`)}
-        </button>
+        <InstallTab key={s} label={t(`install.${s}`)} isSelected={s === system} onClick={() => onPick(s)} />
       ))}
     </div>
   );

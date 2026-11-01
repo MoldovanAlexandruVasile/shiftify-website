@@ -1,4 +1,5 @@
 import { LEGAL_CONTACT_EMAIL } from "../../legal/constants/legal.constants";
+import { MailLink } from "./MailLink";
 
 type Props = { text: string };
 
@@ -9,7 +10,7 @@ export const LegalParagraph = ({ text }: Props) => {
   return (
     <p>
       {text.slice(0, at)}
-      <a className="text-primary underline" href={`mailto:${LEGAL_CONTACT_EMAIL}`}>{LEGAL_CONTACT_EMAIL}</a>
+      <MailLink email={LEGAL_CONTACT_EMAIL} />
       {text.slice(at + LEGAL_CONTACT_EMAIL.length)}
     </p>
   );

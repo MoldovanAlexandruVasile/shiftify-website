@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 
 import { SLIDES, slideAt, TRACK } from "./slides";
 
@@ -58,5 +58,20 @@ export const useLoopingSlider = () => {
     return () => clearTimeout(id);
   }, [index, paused, goTo]);
 
-  return { track, index, goTo, onScroll, setPaused };
+  // Arrow keys move one slide while the slider has focus.
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "ArrowRight") goTo(index + 1);
+    if (event.key === "ArrowLeft") goTo(index - 1);
+  };
+
+  // Spread on the slider: autoplay waits while the visitor points at, touches or focuses it.
+  const pauseHandlers = {
+    onMouseEnter: () => setPaused(true),
+    onMouseLeave: () => setPaused(false),
+    onFocus: () => setPaused(true),
+    onBlur: () => setPaused(false),
+    onPointerDown: () => setPaused(true),
+  };
+
+  return { track, index, goTo, onScroll, onKeyDown, pauseHandlers };
 };

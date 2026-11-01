@@ -1,7 +1,7 @@
-import type { LANGUAGES } from "../../i18n";
 import { cx } from "../../utils/cx";
+import type { LanguageOption } from "./languageOption";
 
-type Props = { language: (typeof LANGUAGES)[number]; isCurrent: boolean; onPick: () => void };
+type Props = { language: LanguageOption; isCurrent: boolean; onPick: () => void };
 
 export const LanguageMenuItem = ({ language, isCurrent, onPick }: Props) => (
   <button
