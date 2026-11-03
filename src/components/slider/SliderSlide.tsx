@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { mediaUrl } from "../../utils/media";
+import { useMediaUrl } from "../../hooks/useMediaUrl";
 import { isCopyAt, slideAt, SLIDES } from "./slides";
 
 type Props = { file: string; position: number };
@@ -8,6 +8,7 @@ type Props = { file: string; position: number };
 // One slide. The two copies at the ends are hidden from screen readers.
 export const SliderSlide = ({ file, position }: Props) => {
   const { t } = useTranslation();
+  const mediaUrl = useMediaUrl();
   const isCopy = isCopyAt(position);
   const label = isCopy ? undefined : t("screens.slideOf", { n: slideAt(position) + 1, total: SLIDES.length });
 

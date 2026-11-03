@@ -1,12 +1,13 @@
 import { useTranslation } from "react-i18next";
 
-import { mediaUrl } from "../utils/media";
+import { useMediaUrl } from "../hooks/useMediaUrl";
 import { WindowControls } from "./WindowControls";
 
 // The real app (captured from its web build) in a Mac window, light or dark
 // following the visitor's system.
 export const AppWindow = () => {
   const { t } = useTranslation();
+  const mediaUrl = useMediaUrl();
   return (
     <div className="overflow-hidden rounded-[14px] border border-line bg-surface shadow-soft">
       <WindowControls />

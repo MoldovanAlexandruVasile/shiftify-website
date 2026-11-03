@@ -1,0 +1,122 @@
+{
+  "calendar.summary": {
+    "screen": "calendar",
+    "x": 544,
+    "y": 150,
+    "w": 2288,
+    "h": 612,
+    "radius": 24
+  },
+  "calendar.earned": {
+    "screen": "calendar",
+    "x": 544,
+    "y": 150,
+    "w": 2288,
+    "h": 612,
+    "radius": 24
+  },
+  "calendar.today": {
+    "screen": "calendar",
+    "x": 2072,
+    "y": 786,
+    "w": 760,
+    "h": 664,
+    "radius": 24
+  },
+  "calendar.month": {
+    "screen": "calendar",
+    "x": 544,
+    "y": 786,
+    "w": 1496,
+    "h": 1494,
+    "radius": 24
+  },
+  "calendar-dark.summary": {
+    "screen": "calendar-dark",
+    "x": 544,
+    "y": 150,
+    "w": 2288,
+    "h": 612,
+    "radius": 24
+  },
+  "calendar-dark.earned": {
+    "screen": "calendar-dark",
+    "x": 544,
+    "y": 150,
+    "w": 2288,
+    "h": 612,
+    "radius": 24
+  },
+  "calendar-dark.today": {
+    "screen": "calendar-dark",
+    "x": 2072,
+    "y": 786,
+    "w": 760,
+    "h": 664,
+    "radius": 24
+  },
+  "calendar-dark.month": {
+    "screen": "calendar-dark",
+    "x": 544,
+    "y": 786,
+    "w": 1496,
+    "h": 1494,
+    "radius": 24
+  },
+  "history.worked": {
+    "screen": "history",
+    "x": 544,
+    "y": 460,
+    "w": 560,
+    "h": 200,
+    "radius": 24
+  },
+  "history.daysOff": {
+    "screen": "history",
+    "x": 1696,
+    "y": 460,
+    "w": 560,
+    "h": 200,
+    "radius": 24
+  },
+  "export.preview": {
+    "screen": "export",
+    "x": 1336,
+    "y": 150,
+    "w": 1496,
+    "h": 994,
+    "radius": 24
+  },
+  "export-preview.document": {
+    "screen": "export-preview",
+    "x": 480,
+    "y": 48,
+    "w": 1920,
+    "h": 1704,
+    "radius": 32
+  },
+  "missing-days.modal": {
+    "screen": "missing-days",
+    "x": 760,
+    "y": 347,
+    "w": 1360,
+    "h": 1106,
+    "radius": 32
+  },
+  "day-off.modal": {
+    "screen": "day-off",
+    "x": 760,
+    "y": 146,
+    "w": 1360,
+    "h": 1508,
+    "radius": 32
+  },
+  "day-off.kind": {
+    "screen": "day-off",
+    "x": 802,
+    "y": 422,
+    "w": 1276,
+    "h": 700,
+    "radius": 24
+  }
+}

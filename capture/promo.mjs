@@ -1,7 +1,8 @@
 // Renders the promo (promo.html) frame by frame and encodes it to
-// ../public/media/promo.mp4 (1920×1080, 30 fps), plus a poster image.
-//   node promo.mjs            full render
-//   node promo.mjs 3 7.5 16   stills at those seconds, for checking
+// ../public/media/promo.mp4 (1920×1080, 30 fps), plus a poster image. In
+// Romanian, ../public/media/ro/.
+//   node promo.mjs [lang]             full render (en or ro; default en)
+//   node promo.mjs [lang] 3 7.5 16    stills at those seconds, for checking
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -9,17 +10,18 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { chromium } from "playwright";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const OUT = path.resolve(HERE, "../public/media");
+const LANG = process.argv[2] ?? "en";
+const OUT = path.resolve(HERE, "../public/media", LANG === "en" ? "" : LANG);
 const FRAMES = path.join(HERE, ".frames");
 const FPS = 30;
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
-await page.goto(pathToFileURL(path.join(HERE, "promo.html")).href);
+await page.goto(`${pathToFileURL(path.join(HERE, "promo.html")).href}?lang=${LANG}`);
 await page.evaluate(() => document.fonts.ready);
 await page.waitForLoadState("networkidle");
 
-const stills = process.argv.slice(2).map(Number);
+const stills = process.argv.slice(3).map(Number);
 if (stills.length) {
   fs.mkdirSync(path.join(HERE, "stills"), { recursive: true });
   for (const t of stills) {
@@ -33,6 +35,7 @@ if (stills.length) {
 
 fs.rmSync(FRAMES, { recursive: true, force: true });
 fs.mkdirSync(FRAMES);
+fs.mkdirSync(OUT, { recursive: true });
 const duration = await page.evaluate(() => window.DURATION);
 const count = Math.round(duration * FPS);
 for (let n = 0; n < count; n++) {

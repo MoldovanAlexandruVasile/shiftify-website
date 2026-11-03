@@ -67,6 +67,32 @@
 <script>
   // Each slide: headline (two lines, the second in the accent), subtitle, the
   // app screen in a window, and an optional card lifted out of a real screen.
+  // slides.html?lang=ro: the Romanian texts, over the Romanian screens (raw/ro).
+  const LANG = new URLSearchParams(location.search).get("lang") ?? "en";
+  const RAW = LANG === "en" ? "raw" : `raw/${LANG}`;
+  const RO = {
+    "01-check-in": { l1: "Pontaj", l2: "dintr-un clic", sub: "Cardul zilei îți înregistrează orele cu un singur clic." },
+    "02-month-at-a-glance": { l1: "Toată luna,", l2: "dintr-o privire", sub: "Ore, zile libere, sărbători legale și cât ai câștigat până acum." },
+    "03-fill-missing-days": { l1: "Ai uitat câteva zile?", l2: "Completează-le deodată", sub: "Toate zilele lucrătoare trecute, fără nimic înregistrat, într-o listă." },
+    "04-days-off": { l1: "Concedii,", l2: "socotite corect", sub: "De odihnă, medical sau fără plată. Sărbătorile legale se aplică singure." },
+    "05-export": { l1: "Trimite pontajul", l2: "în Excel sau PDF", sub: "Un pontaj lunar curat pentru fiecare client, gata de trimis." },
+    "06-dark-mode": { l1: "Ușor pentru ochi,", l2: "zi și noapte", sub: "Temă luminoasă, întunecată sau după dispozitivul tău." },
+    "07-private": { l1: "Privat", l2: "din start", sub: "Totul rămâne pe dispozitivul tău." },
+  };
+  const ROWS = {
+    en: [
+      ["user", "No account", "Open it and start logging. No sign-up, no email."],
+      ["cloud", "No server", "Nothing is sent anywhere. No tracking, no ads."],
+      ["laptop", "Stored on your device", "Your clients and days live in a local database."],
+      ["backup", "Daily backups", "Kept for 14 days, plus backups to any folder you pick."],
+    ],
+    ro: [
+      ["user", "Fără cont", "O deschizi și începi să pontezi. Fără înregistrare, fără email."],
+      ["cloud", "Fără server", "Nu se trimite nimic nicăieri. Fără urmărire, fără reclame."],
+      ["laptop", "Pe dispozitivul tău", "Clienții și zilele tale stau într-o bază de date locală."],
+      ["backup", "Copii zilnice", "Păstrate 14 zile, plus copii în orice dosar alegi."],
+    ],
+  }[LANG];
   const SLIDES = [
     { name: "01-check-in", l1: "Check in", l2: "in one tap", sub: "Today’s card logs your hours with a single click.",
       screen: "calendar", pop: { crop: "calendar.today", lift: 1.3, dx: 40, dy: -20 } },
@@ -94,21 +120,16 @@
     `<div class="row"><div class="ic"><svg viewBox="0 0 24 24">${ICONS[icon]}</svg></div><div><b>${title}</b><span>${text}</span></div><div class="ok">${check}</div></div>`;
 
   window.render = (index, crops) => {
-    const s = SLIDES[index];
+    const s = LANG === "ro" ? { ...SLIDES[index], ...RO[SLIDES[index].name] } : SLIDES[index];
     document.body.classList.toggle("dark", !!s.dark);
     document.getElementById("h1").innerHTML = `${s.l1}<br><span class="accent">${s.l2}</span>`;
     document.getElementById("sub").textContent = s.sub;
     const stage = document.getElementById("stage");
     if (s.private) {
-      stage.innerHTML = `<div class="card private">
-        ${row("user", "No account", "Open it and start logging. No sign-up, no email.")}
-        ${row("cloud", "No server", "Nothing is sent anywhere. No tracking, no ads.")}
-        ${row("laptop", "Stored on your device", "Your clients and days live in a local database.")}
-        ${row("backup", "Daily backups", "Kept for 14 days, plus backups to any folder you pick.")}
-      </div>`;
+      stage.innerHTML = `<div class="card private">${ROWS.map((r) => row(...r)).join("")}</div>`;
       return s.name;
     }
-    stage.innerHTML = `<div class="window"><div class="bar"><i></i><i></i><i></i></div><img src="raw/${s.screen}.png"></div>`;
+    stage.innerHTML = `<div class="window"><div class="bar"><i></i><i></i><i></i></div><img src="${RAW}/${s.screen}.png"></div>`;
     if (s.pop) {
       const c = crops[s.pop.crop];
       // "lift": the card stays over its spot in the window, enlarged around
@@ -130,7 +151,7 @@
         left: `${x}px`, top: `${y}px`,
         width: `${c.w * k}px`, height: `${c.h * k}px`,
         borderRadius: `${c.radius * k}px`,
-        backgroundImage: `url(raw/${c.screen}.png)`,
+        backgroundImage: `url(${RAW}/${c.screen}.png)`,
         backgroundSize: `${2880 * k}px ${1800 * k}px`,
         backgroundPosition: `${-c.x * k}px ${-c.y * k}px`,
       });

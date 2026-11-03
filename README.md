@@ -56,6 +56,14 @@ node slides.mjs     # marketing slides (slides.html) → marketing/ + public/med
 node promo.mjs      # 25 s motion promo (promo.html) → public/media/promo.mp4
 ```
 
+Romanian: the same with `ro` first (`node capture.mjs ro`, `node slides.mjs ro`,
+`node promo.mjs ro`). The app is captured in Romanian (`raw/ro/`), the slides
+and the promo take their Romanian texts, and everything lands in
+`public/media/ro/` (and `marketing/slides/ro/`) under the same names. The two
+hero screenshots (`media/app/`, `media/ro/app/`) are the raw `calendar.png`
+and `calendar-dark.png` at 1600 px (`sips -Z 1600 -s format jpeg`). The site
+picks the folder by the page's language (`src/hooks/useMediaUrl.ts`).
+
 `promo.mjs 3 12.5` renders stills at those seconds instead, for checking a
 change to `promo.html`. The video is encoded with AVFoundation
 (`encode.swift`), so it needs macOS but no ffmpeg.

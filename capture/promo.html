@@ -131,25 +131,25 @@
 <!-- Scene: month summary card -->
 <div class="scene" id="s-summary"><div class="bg-light" data-blobs></div>
   <div class="card summary ui" id="summary">
-    <div class="row1"><span>NOVEMBER SUMMARY</span><b id="pct">0% of target</b></div>
+    <div class="row1"><span data-t="summaryTitle">NOVEMBER SUMMARY</span><b id="pct">0% of target</b></div>
     <div class="bar"><i id="bar1"></i></div>
     <div class="stats">
-      <div class="stat"><small style="color:#7c3aed">Worked</small><b id="worked">0h</b><span>of 144h</span></div>
-      <div class="stat"><small style="color:#64748b">Bank holidays</small><b>1</b><span>8h paid</span></div>
-      <div class="stat"><small style="color:#10b981">Days off</small><b>2</b><span>2 vacation</span></div>
+      <div class="stat"><small style="color:#7c3aed" data-t="workedLabel">Worked</small><b id="worked">0h</b><span data-t="ofHours">of 144h</span></div>
+      <div class="stat"><small style="color:#64748b" data-t="holidays">Bank holidays</small><b>1</b><span data-t="paid">8h paid</span></div>
+      <div class="stat"><small style="color:#10b981" data-t="daysOff">Days off</small><b>2</b><span data-t="vacation">2 vacation</span></div>
     </div>
     <div class="earned">
-      <div class="top"><div>Earned so far<span>45,00 lei/h</span></div><b id="earned">0,00 lei</b></div>
+      <div class="top"><div data-t="earnedTitle">Earned so far<span>45,00 lei/h</span></div><b id="earned">0,00 lei</b></div>
       <div class="bar"><i id="bar2"></i></div>
-      <p>of 6.840,00 lei expected by month end</p>
+      <p data-t="expected">of 6.840,00 lei expected by month end</p>
     </div>
   </div>
   <div class="notif ui" id="notif">
     <img src="../public/icon.png" />
     <div class="t">
-      <div class="h"><b>TIVREN</b><span>now</span></div>
-      <div class="title">Time to check in</div>
-      <div class="body">You haven't logged today at Acme SRL yet.</div>
+      <div class="h"><b>TIVREN</b><span data-t="now">now</span></div>
+      <div class="title" data-t="notifTitle">Time to check in</div>
+      <div class="body" data-t="notifBody">You haven't logged today at Acme SRL yet.</div>
     </div>
   </div>
   <div class="caption" id="cap1">See your month <span class="accent">at a glance</span></div>
@@ -162,10 +162,10 @@
     <div class="big" style="font-size:88px" id="x1">Send your timesheet</div>
     <div class="big accent" style="font-size:88px" id="x2">as Excel or PDF</div>
   </div>
-  <div class="window" id="xwin"><div class="tb"><i></i><i></i><i></i></div><img src="raw/export-preview.png" /></div>
+  <div class="window" id="xwin"><div class="tb"><i></i><i></i><i></i></div><img id="xshot" src="raw/export-preview.png" /></div>
   <div class="card callout ui" id="callout">
-    <div class="k"><span class="ok"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>October · sent</div>
-    <p>21 days · 168h · 7.560,00 lei</p>
+    <div class="k"><span class="ok"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span><span data-t="octoberSent">October · sent</span></div>
+    <p data-t="octoberTotals">21 days · 168h · 7.560,00 lei</p>
     <div class="bar"><i id="bar3"></i></div>
   </div>
 </div>
@@ -192,6 +192,53 @@
 </div>
 
 <script>
+  // ---------- Language ----------
+  // promo.html?lang=ro: the Romanian texts, over the Romanian screens (raw/ro).
+  // Each replaces the element with that id or data-t.
+  const LANG = new URLSearchParams(location.search).get("lang") ?? "en";
+  const TEXTS = {
+    ro: {
+      "logo-tag": "Pontaje pentru freelanceri",
+      "intro-1": "Îți prezentăm",
+      e1: "Fiecare",
+      e3: "zi de lucru,",
+      e4: "într-un",
+      e6: "singur loc.",
+      c1: "Fiecare",
+      c3: "socotită corect.",
+      summaryTitle: "REZUMAT NOIEMBRIE",
+      workedLabel: "Lucrat",
+      ofHours: "din 144h",
+      holidays: "Sărbători",
+      paid: "8h plătite",
+      daysOff: "Zile libere",
+      vacation: "2 odihnă",
+      earnedTitle: "Câștigat până acum<span>45,00 lei/oră</span>",
+      expected: "din 6.840,00 lei estimat la final de lună",
+      now: "acum",
+      notifTitle: "E timpul să pontezi",
+      notifBody: "Încă nu ai înregistrat ziua de azi la Acme SRL.",
+      cap1: 'Toată luna, <span class="accent">dintr-o privire</span>',
+      cap2: 'Un memento în zilele <span class="accent">în care uiți</span>',
+      x1: "Trimite pontajul",
+      x2: "în Excel sau PDF",
+      octoberSent: "Octombrie · trimis",
+      octoberTotals: "21 de zile · 168h · 7.560,00 lei",
+      d1: "Fiecare lună,",
+      d2: "trimisă.",
+      "end-tag": "Pontaje pentru freelanceri, pe dispozitivul tău.",
+      "end-pill": "Descarcă pentru Mac și Windows",
+    },
+  }[LANG];
+  if (TEXTS) {
+    for (const [key, html] of Object.entries(TEXTS)) {
+      const el = document.getElementById(key) ?? document.querySelector(`[data-t="${key}"]`);
+      el.innerHTML = html;
+    }
+    document.getElementById("xshot").src = `raw/${LANG}/export-preview.png`;
+  }
+  const OF_TARGET = LANG === "ro" ? "din normă" : "of target";
+
   // ---------- Timeline helpers ----------
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const p = (t, a, b) => clamp((t - a) / (b - a)); // progress of t through [a, b]
@@ -243,7 +290,12 @@
     plane: '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
     alert: '<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/>',
   };
-  const CHIPS = [
+  const CHIPS = LANG === "ro" ? [
+    ["Acme SRL", "building"], ["Concediu de odihnă", "plane", "green"], ["8h lucrate", "clock"], ["Sărbătoare legală", "flag", "soft"],
+    ["Concediu medical", "pill"], ["pontaj.pdf", "doc", "violet"], ["Jumătate de zi", "sun"], ["Octombrie · trimis", "lock"],
+    ["Pontează · 8h", "check", "violet"], ["Săptămâna 47", "cal"], ["2 zile lipsă", "alert", "amber"], ["Notă: zi de lansare", "note"],
+    ["Globex GmbH", "building"], ["Export Excel", "doc", "soft"], ["Zi liberă", "sun", "green"], ["45,00 lei/oră", "clock"],
+  ] : [
     ["Acme SRL", "building"], ["Vacation", "plane", "green"], ["8h worked", "clock"], ["Bank holiday", "flag", "soft"],
     ["Sick leave", "pill"], ["timesheet.pdf", "doc", "violet"], ["Half day", "sun"], ["October · sent", "lock"],
     ["Check in · 8h", "check", "violet"], ["Week 47", "cal"], ["2 days missing", "alert", "amber"], ["Release day note", "note"],
@@ -262,7 +314,9 @@
   });
 
   // ---------- Cycling words ----------
-  const CYCLE = [["vacation day,", "plane"], ["sick day,", "pill"], ["bank holiday,", "flag"]];
+  const CYCLE = LANG === "ro"
+    ? [["zi de concediu,", "plane"], ["zi de boală,", "pill"], ["sărbătoare legală,", "flag"]]
+    : [["vacation day,", "plane"], ["sick day,", "pill"], ["bank holiday,", "flag"]];
   const cycleEl = $("cycle");
   cycleEl.innerHTML = CYCLE.map(([w, icon]) => `<span><span class="ichip" style="margin-left:0"><svg viewBox="0 0 24 24">${ICON[icon]}</svg></span>${w}</span>`).join("");
 
@@ -331,7 +385,7 @@
       const fill = inOutCubic(p(t, 13.4, 14.8));
       $("bar1").style.width = `${61 * fill}%`;
       $("bar2").style.width = `${58 * fill}%`;
-      $("pct").textContent = `${Math.round(61 * fill)}% of target`;
+      $("pct").textContent = `${Math.round(61 * fill)}% ${OF_TARGET}`;
       $("worked").textContent = `${Math.round(88 * fill)}h`;
       $("earned").textContent = fmtLei(Math.round(3960 * fill));
       blurIn($("cap1"), t, 13.6, 15.4);
