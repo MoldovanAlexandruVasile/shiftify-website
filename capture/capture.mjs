@@ -81,7 +81,7 @@ const TEXT = {
     earned: "Câștigat până acum",
     today: "Azi",
     // The country as the holiday service names it.
-    holidays: "Sărbători legale · Romania",
+    holidays: "Sărbători legale · România",
     month: "noiembrie 2026",
     worked: "Total lucrat",
     daysOff: "Zile libere",
