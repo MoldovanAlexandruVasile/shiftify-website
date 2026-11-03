@@ -23,6 +23,14 @@
     "h": 664,
     "radius": 24
   },
+  "calendar.holidays": {
+    "screen": "calendar",
+    "x": 2072,
+    "y": 1474,
+    "w": 760,
+    "h": 306,
+    "radius": 24
+  },
   "calendar.month": {
     "screen": "calendar",
     "x": 544,
@@ -53,6 +61,14 @@
     "y": 786,
     "w": 760,
     "h": 664,
+    "radius": 24
+  },
+  "calendar-dark.holidays": {
+    "screen": "calendar-dark",
+    "x": 2072,
+    "y": 1474,
+    "w": 760,
+    "h": 306,
     "radius": 24
   },
   "calendar-dark.month": {
