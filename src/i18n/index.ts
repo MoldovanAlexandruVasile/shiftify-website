@@ -25,7 +25,7 @@ i18n
     interpolation: { escapeValue: false },
     detection: {
       order: ["localStorage", "navigator"],
-      lookupLocalStorage: "shiftify-language",
+      lookupLocalStorage: "tivren-language",
       caches: ["localStorage"],
     },
   });

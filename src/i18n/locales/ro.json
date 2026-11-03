@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Shiftify · Pontaje pentru freelanceri, pe Mac și Windows",
-    "privacyTitle": "Politica de confidențialitate · Shiftify",
-    "termsTitle": "Termeni de utilizare · Shiftify"
+    "title": "Tivren · Pontaje pentru freelanceri, pe Mac și Windows",
+    "privacyTitle": "Politica de confidențialitate · Tivren",
+    "termsTitle": "Termeni de utilizare · Tivren"
   },
   "nav": {
     "screens": "Ecrane",
@@ -13,14 +13,14 @@
     "language": "Limba"
   },
   "hero": {
-    "pill": "Acum pe macOS și Windows",
+    "pill": "Disponibilă pe macOS și Windows",
     "title": "Pontaje pentru freelanceri,",
     "titleAccent": "fără bătăi de cap.",
     "lead": "Notează zilele lucrate pentru fiecare client, marchează concediile și trimite pontajul lunar în Excel sau PDF. Sărbătorile legale se aplică automat. Totul rămâne pe calculatorul tău.",
-    "appAlt": "Calendarul Shiftify: rezumatul lunii cu orele lucrate și suma câștigată, cardul de pontaj al zilei și calendarul lunii"
+    "appAlt": "Calendarul Tivren: rezumatul lunii cu orele lucrate și suma câștigată, cardul de pontaj al zilei și calendarul lunii"
   },
   "video": {
-    "label": "Shiftify în 25 de secunde"
+    "label": "Tivren în 25 de secunde"
   },
   "screens": {
     "title": "Aruncă o privire",
@@ -33,7 +33,7 @@
       "01-check-in": "Pontaj dintr-un clic: cardul zilei îți înregistrează orele",
       "02-month-at-a-glance": "Toată luna dintr-o privire: ore, zile libere, sărbători legale și cât ai câștigat până acum",
       "03-fill-missing-days": "Completează toate zilele lipsă deodată, dintr-o singură listă",
-      "04-days-off": "Concedii socotite corect: de odihnă, medical sau fără plată, pe mai multe zile odată",
+      "04-days-off": "Concedii socotite corect: de odihnă, medicale sau fără plată, pe mai multe zile odată",
       "05-export": "Trimite pontajul în Excel sau PDF",
       "06-dark-mode": "Temă luminoasă, întunecată sau după dispozitivul tău",
       "07-private": "Privat din start: fără cont, fără server, datele rămân pe dispozitivul tău, cu copii de rezervă zilnice"
@@ -41,7 +41,7 @@
   },
   "features": {
     "title": "Tot ce îi trebuie unui pontaj lunar",
-    "lead": "Făcut pentru PFA-uri și freelanceri care facturează pe zi.",
+    "lead": "Gândită pentru PFA-uri și freelanceri care își facturează zilele lucrate.",
     "items": [
       {
         "title": "Un clic pe zi",
@@ -82,17 +82,17 @@
         },
         {
           "title": "Trage în Aplicații",
-          "text": "Deschide fișierul .dmg și trage Shiftify în dosarul Aplicații."
+          "text": "Deschide fișierul .dmg și trage Tivren în dosarul Aplicații."
         },
         {
           "title": "Confirmă o singură dată",
-          "text": "Deschide Shiftify. Prima dată, macOS spune că nu poate verifica aplicația: apasă Gata, apoi mergi la Configurări sistem → Confidențialitate și securitate și apasă „Deschide oricum”."
+          "text": "Deschide Tivren. La prima deschidere, macOS anunță că nu poate verifica aplicația: apasă Gata, apoi intră în Configurări sistem → Confidențialitate și securitate și apasă „Deschide oricum”."
         }
       ],
       "windows": [
         {
           "title": "Descarcă",
-          "text": "Descarcă programul de instalare (Shiftify-Setup-x64.exe). Funcționează și pe Windows pe ARM."
+          "text": "Descarcă programul de instalare (Tivren-Setup-x64.exe). Funcționează și pe Windows pe ARM."
         },
         {
           "title": "Confirmă o singură dată",
@@ -100,7 +100,7 @@
         },
         {
           "title": "Gata",
-          "text": "Se instalează doar pentru tine, fără drepturi de administrator, și pornește Shiftify. O găsești apoi în meniul Start."
+          "text": "Se instalează doar pentru tine, fără drepturi de administrator, și pornește Tivren. O găsești apoi în meniul Start."
         }
       ]
     }
@@ -110,7 +110,7 @@
     "items": [
       {
         "q": "Unde sunt salvate datele mele?",
-        "a": "Doar pe calculatorul tău: ~/Library/Application Support/Shiftify pe Mac, %APPDATA%\\Shiftify pe Windows. Nu se trimite nimic către vreun server. Tu decizi unde ajung copiile de rezervă: dosarul pentru cele zilnice îl setezi în Setări → Date, iar fiecare copie sau pontaj exportat se salvează unde vrei tu. Restaurarea se face tot din Setări → Date."
+        "a": "Doar pe calculatorul tău: ~/Library/Application Support/Tivren pe Mac, %APPDATA%\\Tivren pe Windows. Nu se trimite nimic către vreun server. Tu decizi unde ajung copiile de rezervă: dosarul pentru cele zilnice îl alegi în Setări → Date, iar fiecare copie sau pontaj exportat se salvează unde vrei tu. Restaurarea se face tot din Setări → Date."
       },
       {
         "q": "E doar pentru România?",
@@ -118,10 +118,10 @@
       },
       {
         "q": "De ce mă avertizează calculatorul când o deschid?",
-        "a": "Shiftify nu e notarizată de Apple și nici semnată cu un certificat de semnare a codului pentru Windows: amândouă costă, iar proiectul e gratuit. macOS cere confirmarea o singură dată (Confidențialitate și securitate), iar Windows SmartScreen avertizează o singură dată (Mai multe informații → Executare oricum); după aceea se deschide normal."
+        "a": "Tivren nu e notarizată de Apple și nici semnată cu un certificat de semnare a codului pentru Windows: amândouă costă, iar proiectul e gratuit. macOS cere confirmarea o singură dată (Confidențialitate și securitate), iar Windows SmartScreen avertizează o singură dată (Mai multe informații → Executare oricum); după aceea se deschide normal."
       },
       {
-        "q": "Este Shiftify un produs comercial?",
+        "q": "Tivren e un produs comercial?",
         "a": "Nu. E un proiect personal, făcut din plăcere și oferit gratuit. Nu se vinde și nu e destinat uzului comercial, iar asistența și actualizările nu sunt garantate. O descarci și o folosești pe propria răspundere."
       },
       {
@@ -131,7 +131,7 @@
     ]
   },
   "cta": {
-    "title": "Descarcă Shiftify pentru Mac sau Windows",
+    "title": "Descarcă Tivren pentru Mac sau Windows",
     "text": "Gratuit. Privat. Merge și fără internet."
   },
   "download": {
@@ -156,7 +156,7 @@
     "releases": "Toate versiunile"
   },
   "legal": {
-    "back": "← Înapoi la Shiftify",
+    "back": "← Înapoi la Tivren",
     "updated": "Ultima actualizare: {{date}}",
     "privacy": "Politica de confidențialitate",
     "terms": "Termeni de utilizare"

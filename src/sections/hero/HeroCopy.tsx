@@ -8,7 +8,7 @@ import { HeroTitle } from "./HeroTitle";
 
 type Props = { release: LatestRelease | null };
 
-// The hero's left column: what Shiftify is, and the download buttons.
+// The hero's left column: what Tivren is, and the download buttons.
 export const HeroCopy = ({ release }: Props) => {
   const { t } = useTranslation();
   return (

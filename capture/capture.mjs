@@ -1,10 +1,10 @@
-// Raw app screens for the marketing slides, taken from Shiftify's real web
+// Raw app screens for the marketing slides, taken from Tivren's real web
 // build (the one inside the Mac app). Demo data is entered through the UI.
 //
 //   node capture.mjs [appUrl]      (default http://localhost:8091)
 //
 // The web build must be served with cross-origin isolation headers (SQLite
-// runs as WebAssembly): `node serve.mjs ../../shiftify/desktop/app 8091`.
+// runs as WebAssembly): `node serve.mjs ../../tivren/desktop/app 8091`.
 // Writes raw/<screen>.png (2880×1800) and raw/crops.json: where each card
 // sits in those images, so slides can lift real UI out of them.
 import fs from "node:fs";
@@ -45,7 +45,7 @@ await pause(600);
 await page.getByPlaceholder("e.g. Acme SRL").fill("Acme SRL");
 await page.locator('input[type="date"]').first().fill("2026-09-01");
 await page.getByPlaceholder("Not set").fill("45");
-await page.getByText("Start using Shiftify").click();
+await page.getByText("Start using Tivren").click();
 await pause(2500);
 
 const fillMonth = async (month, skip = []) => {

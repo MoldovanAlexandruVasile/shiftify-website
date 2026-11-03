@@ -11,7 +11,7 @@ const en = ({
 }: Placeholders): Record<LegalDocumentKind, LegalDocument> => ({
   privacy: {
     title: "Privacy policy",
-    intro: `Shiftify is a timesheet app published by ${publisher}, a personal, non-commercial project made for fun. It is built to keep your data on your ${isDesktop ? (isWindows ? "PC" : "Mac") : "phone"}: there is no account, no server of ours and no tracking.`,
+    intro: `Tivren is a timesheet app published by ${publisher}, a personal, non-commercial project made for fun. It is built to keep your data on your ${isDesktop ? (isWindows ? "PC" : "Mac") : "phone"}: there is no account, no server of ours and no tracking.`,
     sections: [
       {
         heading: "What the app stores",
@@ -59,7 +59,7 @@ const en = ({
         heading: "Daily backups",
         only: "desktop",
         body: [
-          `At the end of each day, the ${isWindows ? "Windows" : "Mac"} app saves a backup file of your data, keeping the last 14 days. By default it goes to iCloud Drive › Shiftify Backups (Documents if iCloud Drive is off); you can pick another folder or turn daily backups off in Settings › Data. When the folder is in iCloud Drive or another cloud service, that service stores it under its own terms; the files never reach us. Delete all data removes them.`,
+          `At the end of each day, the ${isWindows ? "Windows" : "Mac"} app saves a backup file of your data, keeping the last 14 days. By default it goes to iCloud Drive › Tivren Backups (Documents if iCloud Drive is off); you can pick another folder or turn daily backups off in Settings › Data. When the folder is in iCloud Drive or another cloud service, that service stores it under its own terms; the files never reach us. Delete all data removes them.`,
         ],
       },
       {
@@ -99,18 +99,18 @@ const en = ({
   },
   terms: {
     title: "Terms of use",
-    intro: `These terms apply to your use of Shiftify, published by ${publisher}. By using the app you agree to them. Where you downloaded the app from a store, they complement that store's standard licence terms.`,
+    intro: `These terms apply to your use of Tivren, published by ${publisher}. By using the app you agree to them. Where you downloaded the app from a store, they complement that store's standard licence terms.`,
     sections: [
       {
         heading: "What the app is",
         body: [
-          "Shiftify helps you record the days and hours you work for your clients or employers, and produce timesheets. It is a tool for your own records.",
+          "Tivren helps you record the days and hours you work for your clients or employers, and produce timesheets. It is a tool for your own records.",
         ],
       },
       {
         heading: "A personal project",
         body: [
-          "Shiftify is a personal project, made for fun by one person and shared free of charge. It is not a commercial product: there is no company behind it, nothing is sold, and support, fixes, updates and availability are not guaranteed. The app may change or stop being offered at any time.",
+          "Tivren is a personal project, made for fun by one person and shared free of charge. It is not a commercial product: there is no company behind it, nothing is sold, and support, fixes, updates and availability are not guaranteed. The app may change or stop being offered at any time.",
           "You download, install and use the app at your own risk.",
         ],
       },

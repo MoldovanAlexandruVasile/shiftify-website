@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Colours follow the app's theme (src/theme/constants/color-tokens.ts in shiftify).
+/* Colours follow the app's theme (src/theme/constants/color-tokens.ts in tivren).
    Light here, dark below; every utility reads these, so both themes come free. */
 @theme {
   --color-page: #f8fafc;

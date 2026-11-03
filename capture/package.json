@@ -1,8 +1,8 @@
 {
-  "name": "shiftify-capture",
+  "name": "tivren-capture",
   "private": true,
   "type": "module",
-  "description": "Screenshots and the demo video for the website, taken from Shiftify's web build.",
+  "description": "Screenshots and the demo video for the website, taken from Tivren's web build.",
   "scripts": {
     "capture": "node capture.mjs"
   },

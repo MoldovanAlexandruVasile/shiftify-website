@@ -1,13 +1,13 @@
 // Copies the app's legal texts (Privacy policy, Terms of use) from the
-// shiftify repo, so the website shows exactly what the app shows.
-//   npm run sync:legal            (expects ../shiftify next to this repo)
-//   npm run sync:legal -- <path>  (or the path to the shiftify repo)
+// tivren repo, so the website shows exactly what the app shows.
+//   npm run sync:legal            (expects ../tivren next to this repo)
+//   npm run sync:legal -- <path>  (or the path to the tivren repo)
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const app = path.resolve(process.argv[2] ?? path.join(root, "../shiftify"));
+const app = path.resolve(process.argv[2] ?? path.join(root, "../tivren"));
 const from = path.join(app, "src/features/legal");
 const to = path.join(root, "src/legal");
 

@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Shiftify · Timesheets for freelancers on Mac and Windows",
-    "privacyTitle": "Privacy policy · Shiftify",
-    "termsTitle": "Terms of use · Shiftify"
+    "title": "Tivren · Timesheets for freelancers on Mac and Windows",
+    "privacyTitle": "Privacy policy · Tivren",
+    "termsTitle": "Terms of use · Tivren"
   },
   "nav": {
     "screens": "Screens",
@@ -17,10 +17,10 @@
     "title": "Timesheets for freelancers,",
     "titleAccent": "without the spreadsheet.",
     "lead": "Log the days you work for each client, take days off, and send a monthly timesheet as Excel or PDF. Bank holidays are applied for you. Everything stays on your computer.",
-    "appAlt": "Shiftify's calendar: the month's summary with hours worked and pay earned, today's check-in card and the month view"
+    "appAlt": "Tivren's calendar: the month's summary with hours worked and pay earned, today's check-in card and the month view"
   },
   "video": {
-    "label": "Shiftify in 25 seconds"
+    "label": "Tivren in 25 seconds"
   },
   "screens": {
     "title": "A closer look",
@@ -82,17 +82,17 @@
         },
         {
           "title": "Drag to Applications",
-          "text": "Open the .dmg and drag Shiftify into your Applications folder."
+          "text": "Open the .dmg and drag Tivren into your Applications folder."
         },
         {
           "title": "Allow it once",
-          "text": "Open Shiftify. The first time, macOS says it can't verify the app: click Done, then go to System Settings → Privacy & Security and click “Open Anyway”."
+          "text": "Open Tivren. The first time, macOS says it can't verify the app: click Done, then go to System Settings → Privacy & Security and click “Open Anyway”."
         }
       ],
       "windows": [
         {
           "title": "Download",
-          "text": "Download the installer (Shiftify-Setup-x64.exe). It also runs on Windows on ARM."
+          "text": "Download the installer (Tivren-Setup-x64.exe). It also runs on Windows on ARM."
         },
         {
           "title": "Allow it once",
@@ -100,7 +100,7 @@
         },
         {
           "title": "That's it",
-          "text": "It installs just for you, no admin rights needed, and opens Shiftify. Find it later in the Start menu."
+          "text": "It installs just for you, no admin rights needed, and opens Tivren. Find it later in the Start menu."
         }
       ]
     }
@@ -110,7 +110,7 @@
     "items": [
       {
         "q": "Where is my data stored?",
-        "a": "Only on your computer: ~/Library/Application Support/Shiftify on a Mac, %APPDATA%\\Shiftify on Windows. Nothing is sent to a server. Backups are yours to place: choose the folder for daily backups in Settings → Data, and pick where each backup or exported timesheet is saved when you make it. Restore from Settings → Data."
+        "a": "Only on your computer: ~/Library/Application Support/Tivren on a Mac, %APPDATA%\\Tivren on Windows. Nothing is sent to a server. Backups are yours to place: choose the folder for daily backups in Settings → Data, and pick where each backup or exported timesheet is saved when you make it. Restore from Settings → Data."
       },
       {
         "q": "Is it just for Romania?",
@@ -118,10 +118,10 @@
       },
       {
         "q": "Why does my computer warn me when I open it?",
-        "a": "Shiftify isn't notarized by Apple or signed with a Windows code-signing certificate, which cost money for a free project. macOS asks once (Privacy & Security), and Windows SmartScreen warns once (More info → Run anyway); after that it opens normally."
+        "a": "Tivren isn't notarized by Apple or signed with a Windows code-signing certificate, which cost money for a free project. macOS asks once (Privacy & Security), and Windows SmartScreen warns once (More info → Run anyway); after that it opens normally."
       },
       {
-        "q": "Is Shiftify a commercial product?",
+        "q": "Is Tivren a commercial product?",
         "a": "No. It's a personal project, made for fun and shared for free. It isn't sold or meant for commercial use, and support and updates aren't guaranteed. You download and use it at your own risk."
       },
       {
@@ -131,7 +131,7 @@
     ]
   },
   "cta": {
-    "title": "Get Shiftify for Mac or Windows",
+    "title": "Get Tivren for Mac or Windows",
     "text": "Free. Private. Works offline."
   },
   "download": {
@@ -156,7 +156,7 @@
     "releases": "All releases"
   },
   "legal": {
-    "back": "← Back to Shiftify",
+    "back": "← Back to Tivren",
     "updated": "Last updated {{date}}",
     "privacy": "Privacy policy",
     "terms": "Terms of use"
