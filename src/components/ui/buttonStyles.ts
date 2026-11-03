@@ -13,7 +13,7 @@ const BASE =
 export const buttonStyles = ({ isPrimary = false, size = "md" }: Options = {}) =>
   cx(
     BASE,
-    size === "md" ? "px-6 py-3.5 max-sm:px-4" : "px-4 py-2",
+    size === "md" ? "px-6 py-3.5 max-sm:px-4" : "h-10 px-4",
     isPrimary
       ? "bg-primary text-on-primary shadow-glow hover:bg-primary-strong"
       : "bg-primary-soft text-on-primary-soft",
