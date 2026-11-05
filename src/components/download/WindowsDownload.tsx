@@ -1,7 +1,7 @@
+import { cx } from "@moldovanalexandruvasile/unity-marketing";
 import { useTranslation } from "react-i18next";
 
 import { downloadUrl } from "../../config";
-import { cx } from "../../utils/cx";
 import { WindowsIcon } from "../icons/WindowsIcon";
 import { buttonStyles } from "../ui/buttonStyles";
 

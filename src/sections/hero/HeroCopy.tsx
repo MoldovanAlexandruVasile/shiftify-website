@@ -1,7 +1,7 @@
+import { Pill } from "@moldovanalexandruvasile/unity-marketing";
 import { useTranslation } from "react-i18next";
 
 import { DownloadButtons } from "../../components/download/DownloadButtons";
-import { Pill } from "../../components/ui/Pill";
 import type { LatestRelease } from "../../hooks/useLatestRelease";
 import { HeroLead } from "./HeroLead";
 import { HeroTitle } from "./HeroTitle";

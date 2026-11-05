@@ -1,9 +1,9 @@
+import { IconTile } from "@moldovanalexandruvasile/unity-marketing";
 import { useTranslation } from "react-i18next";
 
 import { downloadUrl } from "../../config";
 import type { LatestRelease } from "../../hooks/useLatestRelease";
 import { fileSize, joinMeta } from "../../utils/downloadMeta";
-import { IconTile } from "../ui/IconTile";
 import { MacBuildIcon } from "./MacBuildIcon";
 import type { MacBuildOption } from "./macBuilds";
 

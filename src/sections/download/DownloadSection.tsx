@@ -1,9 +1,8 @@
+import { Container, Section } from "@moldovanalexandruvasile/unity-marketing";
 import { useTranslation } from "react-i18next";
 
 import { DownloadButtons } from "../../components/download/DownloadButtons";
 import { AppIcon } from "../../components/ui/AppIcon";
-import { Container } from "../../components/ui/Container";
-import { Section } from "../../components/ui/Section";
 import type { LatestRelease } from "../../hooks/useLatestRelease";
 import { CtaCard } from "./CtaCard";
 

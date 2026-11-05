@@ -1,7 +1,6 @@
+import { ChevronDownIcon, cx } from "@moldovanalexandruvasile/unity-marketing";
 import { useTranslation } from "react-i18next";
 
-import { cx } from "../../utils/cx";
-import { ChevronDownIcon } from "../icons/ChevronDownIcon";
 import { buttonStyles } from "../ui/buttonStyles";
 
 type Props = { isPrimary: boolean; isOpen: boolean; onClick: () => void };

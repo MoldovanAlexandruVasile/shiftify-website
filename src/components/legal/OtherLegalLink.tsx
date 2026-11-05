@@ -1,6 +1,6 @@
+import { NavLink } from "@moldovanalexandruvasile/unity-marketing";
 import { useTranslation } from "react-i18next";
 
-import { NavLink } from "../../layout/NavLink";
 import type { LegalDocumentKind } from "../../legal/types/legal.types";
 
 // From Privacy to Terms and back, in the top bar.

@@ -1,4 +1,4 @@
-import { AppleIcon } from "../icons/AppleIcon";
+import { AppleIcon } from "@moldovanalexandruvasile/unity-marketing";
 import { ChipIcon } from "../icons/ChipIcon";
 import type { MacBuild } from "./macBuilds";
 

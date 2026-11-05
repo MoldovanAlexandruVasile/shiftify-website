@@ -1,12 +1,10 @@
+import { BackLink, Container, useDocumentTitle } from "@moldovanalexandruvasile/unity-marketing";
 import { useTranslation } from "react-i18next";
 
-import { LegalBackLink } from "../components/legal/LegalBackLink";
 import { LegalHeading } from "../components/legal/LegalHeading";
 import { LegalSection } from "../components/legal/LegalSection";
 import { OtherLegalLink } from "../components/legal/OtherLegalLink";
 import { useLegalDocument } from "../components/legal/useLegalDocument";
-import { Container } from "../components/ui/Container";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { SiteFooter } from "../layout/SiteFooter";
 import { SiteHeader } from "../layout/SiteHeader";
 import type { LegalDocumentKind } from "../legal/types/legal.types";
@@ -25,7 +23,7 @@ export const LegalPage = ({ kind }: Props) => {
       </SiteHeader>
       <main className="flex-1 pt-12 pb-22">
         <Container isNarrow>
-          <LegalBackLink />
+          <BackLink>{t("legal.back")}</BackLink>
           <LegalHeading title={doc.title} />
           <p className="mt-7 text-[1.1rem]">{doc.intro}</p>
           {doc.sections.map((section) => (

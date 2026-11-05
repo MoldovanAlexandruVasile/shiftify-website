@@ -1,8 +1,7 @@
+import { AppleIcon, cx } from "@moldovanalexandruvasile/unity-marketing";
 import { useTranslation } from "react-i18next";
 
 import { downloadUrl } from "../../config";
-import { cx } from "../../utils/cx";
-import { AppleIcon } from "../icons/AppleIcon";
 import { buttonStyles } from "../ui/buttonStyles";
 import type { MacBuild } from "./macBuilds";
 

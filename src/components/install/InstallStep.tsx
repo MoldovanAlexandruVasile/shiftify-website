@@ -1,7 +1,4 @@
-import { Card } from "../ui/Card";
-import { CardText } from "../ui/CardText";
-import { CardTitle } from "../ui/CardTitle";
-import { StepNumber } from "../ui/StepNumber";
+import { Card, CardText, CardTitle, StepNumber } from "@moldovanalexandruvasile/unity-marketing";
 import type { Step } from "./system";
 
 type Props = { step: Step; number: number };

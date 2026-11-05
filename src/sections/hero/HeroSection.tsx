@@ -1,5 +1,5 @@
+import { Container } from "@moldovanalexandruvasile/unity-marketing";
 import { AppWindow } from "../../components/AppWindow";
-import { Container } from "../../components/ui/Container";
 import type { LatestRelease } from "../../hooks/useLatestRelease";
 import { HeroCopy } from "./HeroCopy";
 

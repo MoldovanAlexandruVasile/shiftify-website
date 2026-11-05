@@ -1,6 +1,5 @@
+import { NavLink } from "@moldovanalexandruvasile/unity-marketing";
 import { useTranslation } from "react-i18next";
-
-import { NavLink } from "../layout/NavLink";
 
 const SECTIONS = ["screens", "features", "install", "faq"] as const;
 

@@ -1,6 +1,6 @@
+import { cx } from "@moldovanalexandruvasile/unity-marketing";
 import type { LatestRelease } from "../../hooks/useLatestRelease";
 import { useVisitorBuild } from "../../hooks/useVisitorBuild";
-import { cx } from "../../utils/cx";
 import { DownloadMeta } from "./DownloadMeta";
 import type { DownloadLayout } from "./layout";
 import { MacDownload } from "./MacDownload";

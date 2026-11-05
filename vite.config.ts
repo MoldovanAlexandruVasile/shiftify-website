@@ -8,6 +8,8 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: './',
   plugins: [react(), tailwindcss()],
+  // One React, even when unity-marketing is linked locally (npm install ../unity-marketing).
+  resolve: { dedupe: ['react', 'react-dom'] },
   build: {
     rollupOptions: {
       input: {

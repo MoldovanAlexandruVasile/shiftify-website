@@ -1,6 +1,6 @@
+import { useDocumentTitle } from "@moldovanalexandruvasile/unity-marketing";
 import { useTranslation } from "react-i18next";
 
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { useLatestRelease } from "../hooks/useLatestRelease";
 import { SiteFooter } from "../layout/SiteFooter";
 import { SiteHeader } from "../layout/SiteHeader";

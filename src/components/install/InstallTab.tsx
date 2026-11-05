@@ -1,4 +1,4 @@
-import { cx } from "../../utils/cx";
+import { cx } from "@moldovanalexandruvasile/unity-marketing";
 
 type Props = { label: string; isSelected: boolean; onClick: () => void };
 

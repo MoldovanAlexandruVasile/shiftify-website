@@ -1,9 +1,7 @@
+import { Container, cx, FROSTED_BAR } from "@moldovanalexandruvasile/unity-marketing";
 import type { ReactNode } from "react";
 
-import { LanguagePicker } from "../components/language/LanguagePicker";
-import { Container } from "../components/ui/Container";
-import { FROSTED_BAR } from "../components/ui/frostedBar";
-import { cx } from "../utils/cx";
+import { LanguagePicker } from "../components/LanguagePicker";
 import { Brand } from "./Brand";
 import { HeaderDownloadButton } from "./HeaderDownloadButton";
 

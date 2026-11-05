@@ -1,6 +1,5 @@
+import { cx, MenuPanel } from "@moldovanalexandruvasile/unity-marketing";
 import type { LatestRelease } from "../../hooks/useLatestRelease";
-import { cx } from "../../utils/cx";
-import { MenuPanel } from "../ui/MenuPanel";
 import { MAC_BUILDS } from "./macBuilds";
 import { MacBuildMenuItem } from "./MacBuildMenuItem";
 import { MacBuildNote } from "./MacBuildNote";
