@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moldovanalexandruvasile.github.io/tivren-website/sitemap.xml
