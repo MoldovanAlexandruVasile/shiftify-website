@@ -5,9 +5,10 @@ type UserAgentData = {
 
 const userAgentData = () => (navigator as Navigator & { userAgentData?: UserAgentData }).userAgentData;
 
-/** Whether the browser runs on Windows. */
+/** Whether the browser runs on Windows (never at build time, when pages are pre-rendered). */
 export const isWindowsVisitor = () =>
-  userAgentData()?.platform === "Windows" || /Windows/.test(navigator.userAgent);
+  typeof navigator !== "undefined" &&
+  (userAgentData()?.platform === "Windows" || /Windows/.test(navigator.userAgent));
 
 /**
  * Whether the browser says the Mac is Intel. Chrome and Edge tell; Safari and

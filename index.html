@@ -2,15 +2,70 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
-    <link rel="apple-touch-icon" href="./icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tivren · Timesheets for freelancers on Mac and Windows</title>
-    <meta name="description" content="Log the days you work for each client and send a monthly timesheet as Excel or PDF. Bank holidays applied automatically. Private, offline, free for Mac and Windows." />
-    <meta property="og:title" content="Tivren · Timesheets for freelancers" />
-    <meta property="og:description" content="Log your workdays, send monthly timesheets as Excel or PDF. Private and offline. Download for macOS or Windows." />
-    <meta property="og:image" content="./icon.png" />
+    <meta
+      name="description"
+      content="Free timesheet app for freelancers and PFAs. Log the days you work for each client, take days off, and send a monthly timesheet as Excel or PDF. Bank holidays applied automatically. Private and offline, for Mac and Windows."
+    />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="application-name" content="Tivren" />
     <meta name="theme-color" content="#7c3aed" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./icon.png" />
+
+    <!-- Link previews (Facebook, LinkedIn, WhatsApp, Slack, iMessage…) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tivren" />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:title" content="Tivren · Timesheets for freelancers, without the spreadsheet" />
+    <meta
+      property="og:description"
+      content="Log your workdays, take days off and send monthly timesheets as Excel or PDF. Bank holidays applied for you. Free, private and offline, for Mac and Windows."
+    />
+    <meta property="og:image" content="%VITE_SITE_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Tivren: timesheets for freelancers, on your device" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ro_RO" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tivren · Timesheets for freelancers, without the spreadsheet" />
+    <meta
+      name="twitter:description"
+      content="Log your workdays and send monthly timesheets as Excel or PDF. Free, private and offline, for Mac and Windows."
+    />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.jpg" />
+
+    <!-- What the page is about, for search engines (schema.org) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Tivren",
+        "url": "%VITE_SITE_URL%/",
+        "description": "Timesheet app for freelancers and PFAs: log the days you work for each client, take days off, and send a monthly timesheet as Excel or PDF. Bank holidays are applied automatically, and everything stays on your computer.",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Timesheet",
+        "operatingSystem": "macOS, Windows",
+        "inLanguage": ["en", "ro"],
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "image": "%VITE_SITE_URL%/icon.png",
+        "screenshot": "%VITE_SITE_URL%/media/slides/02-month-at-a-glance.jpg",
+        "downloadUrl": "https://github.com/MoldovanAlexandruVasile/tivren-website/releases/latest",
+        "author": { "@type": "Person", "name": "Alexandru Moldovan" },
+        "featureList": [
+          "One-click daily check-in",
+          "Automatic bank holidays per client country",
+          "Monthly timesheets as Excel or PDF",
+          "Multiple clients with their own schedule, leave and pay",
+          "Reminders for days not logged",
+          "No account, works offline, data stays on your device"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

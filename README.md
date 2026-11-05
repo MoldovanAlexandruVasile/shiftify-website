@@ -91,3 +91,19 @@ the app's colours as Tailwind colours (`bg-surface`, `text-muted`,
 custom utilities (`bg-hero-glow`, `scrollbar-none`). Components use utility
 classes; shared looks live in small components (`components/ui/`: Container,
 Section, SectionTitle, Card) and `buttonStyles()`.
+
+## SEO
+
+- **Address:** `VITE_SITE_URL` in `.env` is the site's public address. Canonical
+  links, link previews, structured data and the sitemap are all built from it,
+  so a move (for example to a custom domain) is a one-line change.
+- **Head tags** (`index.html`, `privacy.html`, `terms.html`): description,
+  canonical URL, Open Graph and Twitter cards with `public/og-image.jpg`
+  (1200×630), and on the home page schema.org `SoftwareApplication` data.
+- **Pre-rendered HTML:** `npm run build` ends with `scripts/prerender.mjs`, which
+  renders each page (`src/entry-server.tsx`, in English) into the built HTML.
+  Crawlers and link previews see the real content without running JavaScript;
+  in the browser, React takes over the page.
+- **sitemap.xml / robots.txt** are written into `dist/` by the same script.
+  Under `github.io/tivren-website/` crawlers ignore robots.txt (it only counts
+  at a domain's root), so submit the sitemap in Google Search Console.

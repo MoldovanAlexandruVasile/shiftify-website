@@ -11,12 +11,19 @@ export const LANGUAGES = [
 ] as const;
 export type Language = (typeof LANGUAGES)[number]["code"];
 
+// In a browser; not when the pages are pre-rendered at build time (in English).
+const isBrowser = typeof window !== "undefined";
+
 // The visitor's own choice (saved when they pick one), else the browser's
 // language: Romanian for any ro-* locale, English otherwise.
+if (isBrowser) i18n.use(LanguageDetector);
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    ...(isBrowser ? {} : { lng: "en" }),
+    // The texts are bundled, so they're ready at once (no flash, and the
+    // build-time render has them too).
+    initAsync: false,
     resources: { en: { translation: en }, ro: { translation: ro } },
     supportedLngs: LANGUAGES.map((l) => l.code),
     nonExplicitSupportedLngs: true,
@@ -37,7 +44,9 @@ export const currentLanguage = (): Language => (i18n.resolvedLanguage === "ro" ?
 const syncHtmlLang = () => {
   document.documentElement.lang = currentLanguage();
 };
-syncHtmlLang();
-i18n.on("languageChanged", syncHtmlLang);
+if (isBrowser) {
+  syncHtmlLang();
+  i18n.on("languageChanged", syncHtmlLang);
+}
 
 export default i18n;
