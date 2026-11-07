@@ -8,3 +8,10 @@
 
 [build.environment]
   NODE_VERSION = "24"
+
+# Vite gives built files in assets/ a content hash in their name, so a new
+# build always uses new names: browsers can keep them for a year.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
