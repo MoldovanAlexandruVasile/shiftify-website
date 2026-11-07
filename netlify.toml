@@ -1,0 +1,10 @@
+# Netlify build settings. npm installs @moldovanalexandruvasile/unity-marketing
+# from GitHub Packages (.npmrc), so the site needs a NODE_AUTH_TOKEN environment
+# variable (a GitHub token with read:packages) under Site configuration →
+# Environment variables, with the Builds scope.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"

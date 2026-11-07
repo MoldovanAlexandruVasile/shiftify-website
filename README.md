@@ -1,7 +1,7 @@
 # Tivren website
 
 Marketing page for Tivren, the offline timesheet app, with a download
-link for the macOS `.dmg`. React + TypeScript + Vite, deployed to GitHub Pages.
+link for the macOS `.dmg`. React + TypeScript + Vite, hosted on Netlify.
 
 ## Run
 
@@ -13,9 +13,11 @@ npm run build    # → dist/
 
 ## Deploy
 
-Pushing to `main` builds and publishes the site
-(`.github/workflows/deploy.yml`). One-time setup on GitHub: Settings → Pages →
-Source: **GitHub Actions**.
+Hosted on Netlify at https://tivren.netlify.app. Pushing to `main` builds and publishes the
+site (settings in `netlify.toml`). One-time setup in Netlify: import this repo,
+and under Site configuration → Environment variables add `NODE_AUTH_TOKEN` (a
+GitHub token with `read:packages`, marked secret, Builds scope) so npm can
+install `@moldovanalexandruvasile/unity-marketing` from GitHub Packages.
 
 ## Releases (published automatically)
 
@@ -105,5 +107,5 @@ Section, SectionTitle, Card) and `buttonStyles()`.
   Crawlers and link previews see the real content without running JavaScript;
   in the browser, React takes over the page.
 - **sitemap.xml / robots.txt** are written into `dist/` by the same script.
-  Under `github.io/tivren-website/` crawlers ignore robots.txt (it only counts
-  at a domain's root), so submit the sitemap in Google Search Console.
+  The site is at its domain's root, so crawlers read robots.txt and find the
+  sitemap from it; submitting the sitemap in Google Search Console speeds that up.

@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-// Relative base so the build works on GitHub Pages under /<repo>/ and on a custom domain.
+// Relative base so the build works at the domain root or under any sub-path.
 // Pages sit side by side at the root (privacy.html, terms.html) so relative links stay simple.
 export default defineConfig({
   base: './',
